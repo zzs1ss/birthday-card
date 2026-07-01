@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>HAPPY BIRTHDAY</title>
 
   <style>
@@ -12,19 +12,21 @@
       box-sizing: border-box;
     }
 
+    html,
     body {
-      min-height: 100vh;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
       font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      color: #202020;
       background:
-        radial-gradient(circle at 20% 10%, rgba(166, 208, 59, 0.28), transparent 28%),
-        radial-gradient(circle at 80% 20%, rgba(226, 38, 38, 0.12), transparent 24%),
+        radial-gradient(circle at 20% 10%, rgba(166, 208, 59, 0.26), transparent 28%),
+        radial-gradient(circle at 80% 20%, rgba(227, 38, 38, 0.12), transparent 26%),
         linear-gradient(135deg, #f8faf3 0%, #eef3e7 45%, #f7f7f7 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 36px 18px;
-      overflow-x: hidden;
-      color: #222;
+    }
+
+    button {
+      font-family: inherit;
     }
 
     .confetti-layer {
@@ -32,7 +34,7 @@
       inset: 0;
       pointer-events: none;
       overflow: hidden;
-      z-index: 0;
+      z-index: 2;
     }
 
     .confetti {
@@ -40,20 +42,26 @@
       top: -40px;
       width: 12px;
       height: 12px;
-      opacity: 0.8;
+      opacity: 0.82;
       animation: fall linear infinite;
     }
 
-    .confetti.green { background: #A6D03B; }
+    .confetti.green {
+      background: #A6D03B;
+    }
 
     .confetti.white {
       background: #ffffff;
       border: 1px solid rgba(0, 0, 0, 0.08);
     }
 
-    .confetti.black { background: #202020; }
+    .confetti.black {
+      background: #202020;
+    }
 
-    .confetti.red { background: #e32626; }
+    .confetti.red {
+      background: #e32626;
+    }
 
     .confetti.star {
       clip-path: polygon(
@@ -94,114 +102,283 @@
       }
     }
 
-    .page {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 1160px;
+    .splash {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(166, 208, 59, 0.38), transparent 24%),
+        radial-gradient(circle at 78% 22%, rgba(227, 38, 38, 0.13), transparent 22%),
+        linear-gradient(135deg, #fbfff6 0%, #edf4e5 45%, #ffffff 100%);
+      transition: opacity 0.75s ease, transform 0.75s ease;
     }
 
-    .birthday-card {
-      position: relative;
-      width: 100%;
-      padding: 34px;
-      border-radius: 30px;
-      background: rgba(255, 255, 255, 0.68);
+    .splash.hide {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(1.04);
+    }
+
+    .splash-card {
+      width: min(92vw, 760px);
+      border-radius: 34px;
+      padding: 46px 34px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.72);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(166, 208, 59, 0.38);
       box-shadow:
-        0 26px 70px rgba(0, 0, 0, 0.13),
-        inset 0 0 0 1px rgba(166, 208, 59, 0.18);
+        0 28px 70px rgba(0, 0, 0, 0.14),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+      position: relative;
       overflow: hidden;
     }
 
-    .birthday-card::before {
+    .splash-card::before {
       content: "";
       position: absolute;
-      top: -90px;
-      right: -80px;
       width: 240px;
       height: 240px;
+      right: -100px;
+      top: -90px;
       background: rgba(166, 208, 59, 0.28);
-      clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-      transform: rotate(22deg);
-      z-index: -1;
+      clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 18% 100%, 0% 35%);
+      transform: rotate(18deg);
     }
 
-    .birthday-card::after {
+    .splash-card::after {
       content: "";
       position: absolute;
-      bottom: -75px;
-      left: -65px;
-      width: 220px;
-      height: 220px;
+      width: 210px;
+      height: 210px;
+      left: -90px;
+      bottom: -80px;
       background: rgba(227, 38, 38, 0.12);
-      clip-path: polygon(0 0, 100% 24%, 72% 100%, 12% 82%);
+      clip-path: polygon(0 0, 100% 25%, 70% 100%, 10% 78%);
       transform: rotate(-12deg);
-      z-index: -1;
     }
 
-    .top-tag {
+    .splash-tag {
+      position: relative;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(32, 32, 32, 0.88);
-      color: #fff;
-      font-size: 14px;
+      background: #202020;
+      color: #ffffff;
+      font-size: 13px;
       letter-spacing: 1px;
-      margin-bottom: 18px;
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+      margin-bottom: 20px;
+      z-index: 1;
     }
 
-    .top-tag span {
-      width: 10px;
-      height: 10px;
+    .splash-tag span {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #A6D03B;
+      box-shadow: 0 0 12px rgba(166, 208, 59, 0.9);
+    }
+
+    .splash h1 {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(44px, 8vw, 86px);
+      line-height: 0.95;
+      letter-spacing: -2px;
+      font-weight: 900;
+      color: #171717;
+      margin-bottom: 18px;
+    }
+
+    .splash h1 span {
+      color: #A6D03B;
+      text-shadow: 3px 3px 0 #202020;
+    }
+
+    .splash p {
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+      margin: 0 auto 28px;
+      font-size: 17px;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .enter-btn {
+      position: relative;
+      z-index: 1;
+      border: none;
+      outline: none;
+      padding: 16px 30px;
+      border-radius: 999px;
+      color: #ffffff;
+      background: #202020;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .enter-btn:hover {
+      transform: translateY(-3px);
+      background: #111111;
+      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.3);
+    }
+
+    .enter-tip {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      font-size: 13px;
+      color: #777;
+      letter-spacing: 0.5px;
+    }
+
+    .app {
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+    }
+
+    .app.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .stage-track {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.82s cubic-bezier(0.18, 0.88, 0.2, 1);
+      will-change: transform;
+    }
+
+    .stage {
+      width: 100%;
+      height: 100svh;
+      padding: 26px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stage-card {
+      width: min(1120px, 94vw);
+      height: min(820px, 92svh);
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.12),
+        inset 0 0 0 1px rgba(166, 208, 59, 0.2);
+      padding: clamp(20px, 3vw, 34px);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stage-card::before {
+      content: "";
+      position: absolute;
+      top: -90px;
+      right: -80px;
+      width: 230px;
+      height: 230px;
+      background: rgba(166, 208, 59, 0.24);
+      clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 18% 100%, 0% 35%);
+      transform: rotate(18deg);
+      z-index: -1;
+    }
+
+    .stage-card::after {
+      content: "";
+      position: absolute;
+      left: -80px;
+      bottom: -70px;
+      width: 210px;
+      height: 210px;
+      background: rgba(227, 38, 38, 0.1);
+      clip-path: polygon(0 0, 100% 25%, 70% 100%, 10% 78%);
+      transform: rotate(-12deg);
+      z-index: -1;
+    }
+
+    .stage-number {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: rgba(32, 32, 32, 0.9);
+      color: #ffffff;
+      font-size: 13px;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+
+    .stage-number span {
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: #A6D03B;
       box-shadow: 0 0 10px rgba(166, 208, 59, 0.9);
     }
 
-    h1 {
-      font-size: clamp(42px, 8vw, 86px);
-      line-height: 0.95;
+    .stage-title {
+      text-align: center;
+      font-size: clamp(28px, 5vw, 50px);
+      line-height: 1.1;
       font-weight: 900;
-      letter-spacing: -2px;
+      margin-bottom: 8px;
       color: #181818;
-      margin-bottom: 16px;
-      text-transform: uppercase;
     }
 
-    h1 .green {
+    .stage-title .green {
       color: #A6D03B;
-      text-shadow: 3px 3px 0 #202020;
+      text-shadow: 2px 2px 0 #202020;
     }
 
-    h1 .red {
-      color: #e32626;
+    .stage-desc {
+      text-align: center;
+      font-size: 15px;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 18px;
+      max-width: 680px;
+      flex-shrink: 0;
     }
 
-    .subtitle {
-      max-width: 780px;
-      font-size: 18px;
-      line-height: 1.8;
-      color: #444;
-      margin-bottom: 30px;
-    }
-
-    .gallery {
+    .gallery-grid {
+      width: min(68vh, 500px, 86vw);
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 30px;
+      gap: 10px;
+      margin: 0 auto 14px;
+      flex-shrink: 0;
     }
 
     .photo-card {
       position: relative;
       aspect-ratio: 1 / 1;
-      border-radius: 22px;
+      border-radius: 20px;
       overflow: hidden;
       background: #f0f3ec;
       border: 2px solid rgba(32, 32, 32, 0.08);
@@ -258,7 +435,7 @@
       bottom: 10px;
       transform: translateX(-50%);
       z-index: 2;
-      padding: 6px 12px;
+      padding: 5px 11px;
       border-radius: 999px;
       background: rgba(32, 32, 32, 0.82);
       color: #fff;
@@ -268,201 +445,82 @@
     }
 
     .wish-box {
+      width: min(880px, 92%);
       position: relative;
-      padding: 24px;
-      border-radius: 24px;
+      padding: 16px 20px;
+      border-radius: 22px;
       background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(248, 250, 241, 0.86));
+        linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(248, 250, 241, 0.88));
       border: 1px solid rgba(166, 208, 59, 0.35);
-      margin-bottom: 26px;
-    }
-
-    .wish-box::before {
-      content: "";
-      position: absolute;
-      top: 18px;
-      right: 20px;
-      width: 42px;
-      height: 42px;
-      background: #A6D03B;
-      clip-path: polygon(
-        50% 0%,
-        61% 35%,
-        98% 35%,
-        68% 57%,
-        79% 91%,
-        50% 70%,
-        21% 91%,
-        32% 57%,
-        2% 35%,
-        39% 35%
-      );
-      opacity: 0.45;
-    }
-
-    .wish-box h2 {
-      font-size: 25px;
-      margin-bottom: 14px;
-      color: #202020;
-    }
-
-    .wish-box h2 span {
-      color: #A6D03B;
-      text-shadow: 1px 1px 0 #202020;
-    }
-
-    .wish-box p {
-      font-size: 17px;
-      line-height: 1.95;
       color: #333;
+      line-height: 1.75;
+      font-size: 14px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
     }
 
-    .highlight {
+    .wish-box strong {
       color: #e32626;
-      font-weight: 700;
     }
 
-    .interaction {
-      text-align: center;
-      margin-bottom: 28px;
+    .stage-btn-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      padding-top: 8px;
+      flex-shrink: 0;
     }
 
-    .camil-btn,
-    .firework-btn,
-    .cake-btn {
+    .main-btn,
+    .ghost-btn {
       border: none;
       outline: none;
-      padding: 15px 24px;
+      padding: 14px 24px;
       border-radius: 999px;
-      background: #202020;
-      color: #fff;
-      font-size: 17px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);
       transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
     }
 
-    .camil-btn:hover,
-    .firework-btn:hover,
-    .cake-btn:hover {
+    .main-btn {
+      background: #202020;
+      color: #ffffff;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.24);
+    }
+
+    .main-btn:hover {
       transform: translateY(-3px);
-      background: #111;
-      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.28);
+      background: #111111;
     }
 
-    .secret-wrap {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.55s ease;
-    }
-
-    .secret-wrap.show {
-      max-height: 380px;
-    }
-
-    .secret-message {
-      margin: 22px auto 0;
-      width: min(92%, 900px);
-      padding: 26px 34px;
-      border-radius: 24px;
-      background:
-        linear-gradient(135deg, #202020 0%, #303030 58%, #1c1c1c 100%);
-      color: #fff;
-      border: 2px solid rgba(166, 208, 59, 0.9);
-      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
-      transform: scale(0.86);
-      opacity: 0;
-      text-align: center;
-    }
-
-    .secret-wrap.show .secret-message {
-      animation: popIn 0.45s ease forwards;
-    }
-
-    @keyframes popIn {
-      0% {
-        transform: scale(0.86);
-        opacity: 0;
-      }
-
-      70% {
-        transform: scale(1.03);
-        opacity: 1;
-      }
-
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    .secret-title {
-      color: #A6D03B;
-      font-size: 24px;
-      font-weight: 900;
-      margin-bottom: 12px;
-      letter-spacing: 1px;
-    }
-
-    .secret-text {
-      font-size: 17px;
-      line-height: 2;
-      font-weight: 600;
-    }
-
-    .secret-line {
-      white-space: nowrap;
-    }
-
-    .secret-message .red-scarf {
-      color: #ff4a4a;
-      font-weight: 900;
-    }
-
-    .section-title {
-      text-align: center;
-      margin: 36px 0 14px;
-    }
-
-    .section-title h2 {
-      display: inline-block;
-      font-size: 26px;
+    .ghost-btn {
+      background: #A6D03B;
       color: #202020;
-      position: relative;
+      box-shadow: 0 12px 26px rgba(166, 208, 59, 0.28);
     }
 
-    .section-title h2::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: -8px;
-      transform: translateX(-50%);
-      width: 70%;
-      height: 6px;
-      border-radius: 999px;
-      background: rgba(166, 208, 59, 0.75);
-      z-index: -1;
+    .ghost-btn:hover {
+      transform: translateY(-3px);
+      background: #b7e34d;
     }
 
-    .section-title p {
-      margin-top: 16px;
-      font-size: 15px;
-      color: #666;
-    }
-
-    .firework-section {
-      position: relative;
-      height: 330px;
-      border-radius: 28px;
+    .firework-stage-box {
+      width: min(940px, 94vw);
+      flex: 1;
+      min-height: 300px;
+      border-radius: 30px;
       overflow: hidden;
+      position: relative;
       background:
         radial-gradient(circle at 20% 20%, rgba(166, 208, 59, 0.24), transparent 28%),
         radial-gradient(circle at 80% 28%, rgba(227, 38, 38, 0.18), transparent 26%),
         linear-gradient(135deg, #151515, #2a2a2a 55%, #101010);
       border: 2px solid rgba(166, 208, 59, 0.55);
-      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.22);
-      margin-bottom: 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
       cursor: pointer;
     }
 
@@ -475,16 +533,16 @@
     }
 
     .firework-content {
-      position: relative;
+      position: absolute;
+      inset: 0;
       z-index: 2;
-      height: 100%;
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 24px;
-      color: #fff;
       pointer-events: none;
+      padding: 24px;
     }
 
     .firework-content-inner {
@@ -492,65 +550,33 @@
     }
 
     .firework-content h3 {
-      font-size: 32px;
-      margin-bottom: 10px;
+      font-size: clamp(32px, 7vw, 62px);
       color: #A6D03B;
-      text-shadow: 0 0 18px rgba(166, 208, 59, 0.45);
+      margin-bottom: 12px;
+      text-shadow: 0 0 24px rgba(166, 208, 59, 0.48);
+      font-weight: 900;
     }
 
     .firework-content p {
       font-size: 16px;
       line-height: 1.8;
-      margin-bottom: 18px;
-      color: rgba(255, 255, 255, 0.86);
-    }
-
-    .firework-btn {
-      background: #A6D03B;
-      color: #202020;
-      box-shadow: 0 14px 28px rgba(166, 208, 59, 0.25);
-    }
-
-    .firework-btn:hover {
-      background: #b7e34d;
-    }
-
-    .cake-section {
-      position: relative;
-      padding: 34px 24px;
-      border-radius: 28px;
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(246, 251, 235, 0.88));
-      border: 1px solid rgba(166, 208, 59, 0.38);
-      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.08);
-      text-align: center;
-      overflow: hidden;
-      margin-bottom: 28px;
-    }
-
-    .cake-section::before {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      right: -70px;
-      top: -60px;
-      background: rgba(166, 208, 59, 0.22);
-      clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 18% 100%, 0% 35%);
-      transform: rotate(18deg);
+      color: rgba(255, 255, 255, 0.88);
+      margin-bottom: 20px;
     }
 
     .cake-scene {
       position: relative;
-      height: 430px;
-      margin: 10px auto 24px;
-      border-radius: 26px;
+      width: min(920px, 94vw);
+      flex: 1;
+      min-height: 360px;
+      border-radius: 30px;
       overflow: hidden;
       perspective: 900px;
       background:
         radial-gradient(circle at 50% 44%, rgba(166, 208, 59, 0.32), transparent 20%),
         radial-gradient(circle at 50% 48%, rgba(32, 32, 32, 0.13), transparent 38%),
         linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(166, 208, 59, 0.08));
+      border: 1px solid rgba(166, 208, 59, 0.36);
     }
 
     .portal-glow {
@@ -644,11 +670,12 @@
       user-select: none;
     }
 
+    /* 已优化：蛋糕文字位置 */
     .cake-lettering {
       position: absolute;
       left: 50%;
-      bottom: 72px;
-      width: 188px;
+      bottom: 78px;
+      width: 172px;
       transform: translateX(-50%);
       z-index: 5;
       text-align: center;
@@ -656,10 +683,10 @@
     }
 
     .cake-line-main {
-      font-size: 22px;
+      font-size: 20px;
       line-height: 1;
       font-weight: 900;
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
       color: #A6D03B;
       text-shadow:
         0 1px 0 #ffffff,
@@ -667,64 +694,14 @@
     }
 
     .cake-line-sub {
-      margin-top: 12px;
-      font-size: 10px;
+      margin-top: 8px;
+      font-size: 9px;
       line-height: 1;
       font-weight: 900;
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
       color: #ffffff;
       text-shadow:
         0 1px 2px rgba(0, 0, 0, 0.28);
-    }
-
-    .cake-sparkle {
-      position: absolute;
-      z-index: 6;
-      color: #A6D03B;
-      font-weight: 900;
-      opacity: 0;
-      pointer-events: none;
-      text-shadow: 0 0 8px rgba(166, 208, 59, 0.6);
-    }
-
-    .delivery-wrapper.arrive .cake-sparkle {
-      opacity: 1;
-      animation-name: sparkleFloat;
-      animation-duration: 1.8s;
-      animation-iteration-count: infinite;
-      animation-timing-function: ease-in-out;
-    }
-
-    .sparkle-one {
-      left: 34%;
-      bottom: 118px;
-      font-size: 18px;
-    }
-
-    .sparkle-two {
-      left: 63%;
-      bottom: 126px;
-      font-size: 16px;
-      animation-delay: 0.35s;
-    }
-
-    .sparkle-three {
-      left: 51%;
-      bottom: 150px;
-      font-size: 14px;
-      animation-delay: 0.65s;
-    }
-
-    @keyframes sparkleFloat {
-      0%, 100% {
-        transform: translateY(0) scale(1);
-        opacity: 0.65;
-      }
-
-      50% {
-        transform: translateY(-8px) scale(1.18);
-        opacity: 1;
-      }
     }
 
     .candle-flame {
@@ -845,64 +822,29 @@
       }
     }
 
-    .delivery-wrapper.blown .cake-lettering {
-      filter: brightness(0.92);
-    }
-
-    .delivery-wrapper.blown .cake-sparkle {
-      opacity: 0.2;
-    }
-
-    .cake-actions {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .cake-btn:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
-
-    .cake-btn:disabled:hover {
-      transform: none;
-      background: #202020;
-      box-shadow: none;
-    }
-
-    .blow-btn.ready {
-      background: #A6D03B;
-      color: #202020;
-    }
-
-    .blow-btn.ready:hover {
-      background: #b7e34d;
-    }
-
     .cake-message {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.55s ease;
+      width: min(720px, 92%);
     }
 
     .cake-message.show {
-      max-height: 180px;
+      max-height: 160px;
     }
 
     .cake-message-inner {
-      margin: 18px auto 0;
-      max-width: 720px;
-      padding: 18px 22px;
+      margin: 12px auto 0;
+      padding: 16px 20px;
       border-radius: 22px;
       background: rgba(32, 32, 32, 0.9);
       color: #fff;
       line-height: 1.8;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 700;
       border: 2px solid rgba(166, 208, 59, 0.85);
       animation: popIn 0.45s ease forwards;
+      text-align: center;
     }
 
     .cake-message-inner span {
@@ -910,95 +852,161 @@
       font-weight: 900;
     }
 
-    .footer-note {
-      text-align: center;
-      margin-top: 24px;
+    @keyframes popIn {
+      0% {
+        transform: scale(0.88);
+        opacity: 0;
+      }
+
+      70% {
+        transform: scale(1.03);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .stage-nav {
+      position: fixed;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 12;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    body.entered .stage-nav {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(32, 32, 32, 0.22);
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease, height 0.25s ease;
+    }
+
+    .dot.active {
+      height: 34px;
+      background: #A6D03B;
+      box-shadow: 0 0 14px rgba(166, 208, 59, 0.75);
+    }
+
+    .swipe-tip {
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      z-index: 12;
       font-size: 13px;
-      color: #666;
+      color: rgba(32, 32, 32, 0.62);
       letter-spacing: 0.5px;
+      pointer-events: none;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    body.entered .swipe-tip {
+      opacity: 1;
     }
 
     @media (max-width: 720px) {
-      body {
-        padding: 22px 12px;
+      .splash-card {
+        padding: 36px 22px;
+        border-radius: 28px;
       }
 
-      .birthday-card {
-        padding: 24px 18px;
-        border-radius: 24px;
-      }
-
-      .top-tag {
-        font-size: 12px;
-      }
-
-      h1 {
-        letter-spacing: -1px;
-      }
-
-      .subtitle {
+      .splash p {
         font-size: 15px;
-        line-height: 1.75;
-        margin-bottom: 22px;
       }
 
-      .gallery {
-        gap: 10px;
+      .enter-btn {
+        width: 100%;
+        font-size: 16px;
+      }
+
+      .stage {
+        padding: 14px 10px;
+      }
+
+      .stage-card {
+        width: 94vw;
+        height: 93svh;
+        padding: 16px 12px;
+        border-radius: 26px;
+      }
+
+      .stage-number {
+        font-size: 11px;
+        margin-bottom: 8px;
+      }
+
+      .stage-title {
+        font-size: 25px;
+        margin-bottom: 4px;
+      }
+
+      .stage-desc {
+        font-size: 12px;
+        margin-bottom: 8px;
+      }
+
+      .gallery-grid {
+        width: min(82vw, 350px);
+        gap: 7px;
+        margin-bottom: 10px;
       }
 
       .photo-card {
-        border-radius: 16px;
+        border-radius: 15px;
       }
 
       .center-avatar::after {
         font-size: 10px;
-        padding: 5px 10px;
+        padding: 4px 8px;
+        bottom: 7px;
       }
 
       .wish-box {
-        padding: 20px 18px;
+        width: 92%;
+        padding: 12px 13px;
+        font-size: 12px;
+        line-height: 1.55;
       }
 
-      .wish-box h2 {
-        font-size: 21px;
-      }
-
-      .wish-box p {
+      .main-btn,
+      .ghost-btn {
+        width: 100%;
+        padding: 13px 16px;
         font-size: 15px;
       }
 
-      .camil-btn,
-      .firework-btn,
-      .cake-btn {
-        width: 100%;
-        font-size: 15px;
-        padding: 14px 18px;
+      .stage-btn-row {
+        gap: 10px;
+        padding-top: 8px;
+        margin-top: 4px;
       }
 
-      .secret-message {
-        width: 100%;
-        padding: 22px 18px;
-      }
-
-      .secret-title {
-        font-size: 21px;
-      }
-
-      .secret-text {
-        font-size: 14px;
-        line-height: 1.9;
-      }
-
-      .secret-line {
-        white-space: normal;
-      }
-
-      .firework-section {
-        height: 280px;
+      .firework-stage-box {
+        min-height: 330px;
+        border-radius: 24px;
       }
 
       .firework-content h3 {
-        font-size: 25px;
+        font-size: 34px;
       }
 
       .firework-content p {
@@ -1006,7 +1014,8 @@
       }
 
       .cake-scene {
-        height: 360px;
+        min-height: 360px;
+        border-radius: 24px;
       }
 
       .delivery-wrapper {
@@ -1016,18 +1025,19 @@
       }
 
       .cake-lettering {
-        width: 156px;
-        bottom: 60px;
+        width: 144px;
+        bottom: 64px;
       }
 
       .cake-line-main {
-        font-size: 18px;
-        letter-spacing: 1.5px;
+        font-size: 17px;
+        letter-spacing: 1.2px;
       }
 
       .cake-line-sub {
-        margin-top: 10px;
-        font-size: 9px;
+        margin-top: 7px;
+        font-size: 8px;
+        letter-spacing: 0.6px;
       }
 
       .flame-one {
@@ -1065,29 +1075,58 @@
         left: 55%;
         bottom: 153px;
       }
-    }
 
-    @media (max-width: 480px) {
-      .gallery {
-        grid-template-columns: repeat(3, 1fr);
+      .cake-message-inner {
+        font-size: 13px;
+        padding: 13px 14px;
+      }
+
+      .stage-nav {
+        right: 10px;
         gap: 8px;
       }
 
-      .birthday-card::before,
-      .birthday-card::after {
-        opacity: 0.55;
+      .dot {
+        width: 9px;
+        height: 9px;
       }
 
-      .secret-message {
-        padding: 20px 14px;
+      .dot.active {
+        height: 26px;
       }
 
-      .secret-text {
-        font-size: 13px;
+      .swipe-tip {
+        font-size: 12px;
+        bottom: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stage-card {
+        height: 93svh;
+      }
+
+      .gallery-grid {
+        width: min(82vw, 310px);
+        gap: 6px;
+      }
+
+      .stage-title {
+        font-size: 24px;
+      }
+
+      .stage-desc {
+        font-size: 12px;
+      }
+
+      .wish-box {
+        font-size: 11.5px;
+        line-height: 1.5;
+        padding: 10px 12px;
       }
 
       .cake-scene {
-        height: 320px;
+        min-height: 320px;
       }
 
       .delivery-wrapper {
@@ -1097,18 +1136,19 @@
       }
 
       .cake-lettering {
-        width: 132px;
-        bottom: 50px;
+        width: 124px;
+        bottom: 54px;
       }
 
       .cake-line-main {
-        font-size: 16px;
-        letter-spacing: 1px;
+        font-size: 15px;
+        letter-spacing: 0.8px;
       }
 
       .cake-line-sub {
-        margin-top: 8px;
-        font-size: 8px;
+        margin-top: 6px;
+        font-size: 7px;
+        letter-spacing: 0.5px;
       }
 
       .flame-one {
@@ -1153,153 +1193,319 @@
 <body>
   <div class="confetti-layer" id="confettiLayer"></div>
 
-  <main class="page">
-    <section class="birthday-card">
-      <div class="top-tag">
+  <section class="splash" id="splash">
+    <div class="splash-card">
+      <div class="splash-tag">
         <span></span>
         CAMIL STYLE · 16TH BIRTHDAY
       </div>
 
       <h1>
-        HAPPY <br />
-        <span class="green">BIRTH</span><span class="red">DAY</span>
+        HAPPY <br>
+        <span>BIRTHDAY</span>
       </h1>
 
-      <p class="subtitle">
-        今天的主角闪亮登场。愿这个特别的生日，像草绿色的光一样明亮，
-        也像卡米尔的红围巾一样，带着勇气、温柔和一点点酷。
+      <p>
+        这里藏着三个小小的生日环节：照片、烟花和蛋糕。
+        准备好之后，就点开这份只属于你的生日惊喜吧。
       </p>
 
-      <div class="gallery">
-        <div class="photo-card"><img src="camil1.jpg" alt="卡米尔图片1"></div>
-        <div class="photo-card"><img src="camil2.jpg" alt="卡米尔图片2"></div>
-        <div class="photo-card"><img src="camil3.jpg" alt="卡米尔图片3"></div>
-        <div class="photo-card"><img src="camil4.jpg" alt="卡米尔图片4"></div>
-        <div class="photo-card center-avatar"><img src="girl.jpg" alt="女生头像"></div>
-        <div class="photo-card"><img src="camil5.jpg" alt="卡米尔图片5"></div>
-        <div class="photo-card"><img src="camil6.jpg" alt="卡米尔图片6"></div>
-        <div class="photo-card"><img src="camil7.jpg" alt="卡米尔图片7"></div>
-        <div class="photo-card"><img src="camil8.jpg" alt="卡米尔图片8"></div>
+      <button class="enter-btn" id="enterBtn">
+        开启生日惊喜 💚
+      </button>
+
+      <div class="enter-tip">
+        进入后，上滑一次切换一个环节
       </div>
+    </div>
+  </section>
 
-      <div class="wish-box">
-        <h2>给今天<span>16岁</span>的你</h2>
-        <p>
-          生日快乐呀！16岁是很特别的一年，是慢慢长大、也继续保持可爱的一年。
-          愿你一直像你喜欢的<span class="highlight">卡米尔</span>一样，
-          有自己的判断，也有坚定向前的勇气。愿你的<span class="highlight">聪明</span>被看见，
-          你的<span class="highlight">帅气</span>被喜欢，你的每一次<span class="highlight">成长</span>
-          都闪闪发光。新的一岁，继续做很酷、很温柔、也很独一无二的自己吧。
-        </p>
-      </div>
+  <main class="app" id="app">
+    <div class="stage-track" id="stageTrack">
+      <section class="stage" data-stage="0">
+        <div class="stage-card">
+          <div class="stage-number">
+            <span></span>
+            PART 01 · PHOTO WALL
+          </div>
 
-      <div class="interaction">
-        <button class="camil-btn" id="camilBtn">
-          点我，卡米尔有话说💚
-        </button>
+          <h2 class="stage-title">
+            九宫格<span class="green">生日照片墙</span>
+          </h2>
 
-        <div class="secret-wrap" id="secretWrap">
-          <div class="secret-message">
-            <div class="secret-title">“生日快乐。”</div>
+          <p class="stage-desc">
+            中间是今天最特别的主角，周围是卡米尔一起守护这份生日祝福。
+          </p>
 
-            <div class="secret-text">
-              16岁正好，是可以大胆向前的一岁。愿你像我的
-              <span class="red-scarf">红围巾</span>
-              一样，永远充满活力；
+          <div class="gallery-grid">
+            <div class="photo-card">
+              <img src="camil1.jpg" alt="卡米尔图片1">
             </div>
 
-            <div class="secret-text secret-line">
-              也愿你在未来的每一天，都能保持清醒、勇敢和无所畏惧。
+            <div class="photo-card">
+              <img src="camil2.jpg" alt="卡米尔图片2">
             </div>
 
-            <div class="secret-text secret-line">
-              今天，你就是最特别的存在。💚
+            <div class="photo-card">
+              <img src="camil3.jpg" alt="卡米尔图片3">
+            </div>
+
+            <div class="photo-card">
+              <img src="camil4.jpg" alt="卡米尔图片4">
+            </div>
+
+            <div class="photo-card center-avatar">
+              <img src="girl.jpg" alt="女生头像">
+            </div>
+
+            <div class="photo-card">
+              <img src="camil5.jpg" alt="卡米尔图片5">
+            </div>
+
+            <div class="photo-card">
+              <img src="camil6.jpg" alt="卡米尔图片6">
+            </div>
+
+            <div class="photo-card">
+              <img src="camil7.jpg" alt="卡米尔图片7">
+            </div>
+
+            <div class="photo-card">
+              <img src="camil8.jpg" alt="卡米尔图片8">
+            </div>
+          </div>
+
+          <div class="wish-box">
+            生日快乐呀！16岁是很特别的一年，是慢慢长大、也继续保持可爱的一年。
+            愿你一直像你喜欢的<strong>卡米尔</strong>一样，有自己的判断，也有坚定向前的勇气。
+            愿你的<strong>聪明</strong>被看见，你的<strong>帅气</strong>被喜欢，
+            你的每一次<strong>成长</strong>都闪闪发光。新的一岁，继续做很酷、很温柔、也很独一无二的自己吧。
+          </div>
+
+          <div class="stage-btn-row">
+            <button class="ghost-btn" data-next>进入烟花环节 ✨</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="stage" data-stage="1">
+        <div class="stage-card">
+          <div class="stage-number">
+            <span></span>
+            PART 02 · FIREWORKS
+          </div>
+
+          <h2 class="stage-title">
+            点亮<span class="green">生日烟花</span>
+          </h2>
+
+          <p class="stage-desc">
+            点击黑色区域，或者点击按钮，放一场属于16岁的生日烟花。
+          </p>
+
+          <div class="firework-stage-box" id="fireworkStage">
+            <canvas id="fireworkCanvas"></canvas>
+
+            <div class="firework-content">
+              <div class="firework-content-inner">
+                <h3>MAKE A WISH</h3>
+                <p>
+                  愿今天的每一束光，都为你而亮。<br>
+                  点击这里，让烟花出现。
+                </p>
+
+                <button class="ghost-btn" id="fireworkBtn">
+                  放一朵烟花 ✨
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage-btn-row">
+            <button class="main-btn" data-prev>返回照片墙</button>
+            <button class="ghost-btn" data-next>进入蛋糕环节 🎂</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="stage" data-stage="2">
+        <div class="stage-card">
+          <div class="stage-number">
+            <span></span>
+            PART 03 · BIRTHDAY CAKE
+          </div>
+
+          <h2 class="stage-title">
+            卡米尔送来<span class="green">生日蛋糕</span>
+          </h2>
+
+          <p class="stage-desc">
+            请卡米尔从网页里走出来，把生日蛋糕送到你面前。
+          </p>
+
+          <div class="cake-scene">
+            <div class="portal-glow"></div>
+
+            <div class="delivery-wrapper" id="cakeDelivery">
+              <img class="camil-holder-img" src="camil-holder.png" alt="卡米尔托举蛋糕">
+
+              <div class="cake-lettering">
+                <div class="cake-line-main">HAPPY</div>
+                <div class="cake-line-sub">16TH BIRTHDAY</div>
+              </div>
+
+              <div class="candle-flame flame-one"></div>
+              <div class="candle-flame flame-two"></div>
+              <div class="candle-flame flame-three"></div>
+
+              <div class="cake-smoke smoke-one"></div>
+              <div class="cake-smoke smoke-two"></div>
+              <div class="cake-smoke smoke-three"></div>
+            </div>
+          </div>
+
+          <div class="stage-btn-row">
+            <button class="main-btn" id="deliverCakeBtn">
+              请卡米尔走出来 💚
+            </button>
+
+            <button class="ghost-btn" id="cakeBtn" disabled>
+              轻轻吹蜡烛 🎂
+            </button>
+          </div>
+
+          <div class="cake-message" id="cakeMessage">
+            <div class="cake-message-inner">
+              蜡烛已经熄灭啦。愿你的16岁被好运包围，
+              每一天都有<span>绿色的勇气</span>、红色的热烈和闪闪发光的小确幸。
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="section-title">
-        <h2>向上滑，点亮生日烟花</h2>
-        <p>在下面的黑色区域里，用鼠标或手指轻轻向上滑动，就会出现烟花。</p>
-      </div>
-
-      <div class="firework-section" id="fireworkStage">
-        <canvas id="fireworkCanvas"></canvas>
-
-        <div class="firework-content">
-          <div class="firework-content-inner">
-            <h3>MAKE A WISH</h3>
-            <p>
-              愿今天的每一束光，都为16岁的你而亮。<br>
-              向上滑动，或者点击按钮，放一场属于你的生日烟花。
-            </p>
-            <button class="firework-btn" id="fireworkBtn">放一朵烟花 ✨</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="section-title">
-        <h2>卡米尔送来生日蛋糕</h2>
-        <p>请卡米尔从网页里走出来，把生日蛋糕送到你面前。</p>
-      </div>
-
-      <div class="cake-section">
-        <div class="cake-scene">
-          <div class="portal-glow"></div>
-
-          <div class="delivery-wrapper" id="cakeDelivery">
-            <img class="camil-holder-img" src="camil-holder.png" alt="卡米尔托举蛋糕">
-
-            <div class="cake-lettering">
-              <div class="cake-line-main">HAPPY</div>
-              <div class="cake-line-sub">16TH BIRTHDAY</div>
-            </div>
-
-            <div class="cake-sparkle sparkle-one">✦</div>
-            <div class="cake-sparkle sparkle-two">✧</div>
-            <div class="cake-sparkle sparkle-three">✦</div>
-
-            <div class="candle-flame flame-one"></div>
-            <div class="candle-flame flame-two"></div>
-            <div class="candle-flame flame-three"></div>
-
-            <div class="cake-smoke smoke-one"></div>
-            <div class="cake-smoke smoke-two"></div>
-            <div class="cake-smoke smoke-three"></div>
-          </div>
-        </div>
-
-        <div class="cake-actions">
-          <button class="cake-btn" id="deliverCakeBtn">请卡米尔从网页里走出来 💚</button>
-          <button class="cake-btn blow-btn" id="cakeBtn" disabled>轻轻吹蜡烛 🎂</button>
-        </div>
-
-        <div class="cake-message" id="cakeMessage">
-          <div class="cake-message-inner">
-            蜡烛已经熄灭啦。愿你的16岁被好运包围，
-            每一天都有<span>绿色的勇气</span>、红色的热烈和闪闪发光的小确幸。
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-note">
-        GREEN · RED · BLACK · WHITE · FOR YOUR SPECIAL DAY
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
-  <script>
-    const confettiLayer = document.getElementById("confettiLayer");
+  <div class="stage-nav" id="stageNav">
+    <button class="dot active" data-go="0" aria-label="照片墙"></button>
+    <button class="dot" data-go="1" aria-label="烟花"></button>
+    <button class="dot" data-go="2" aria-label="蛋糕"></button>
+  </div>
 
-    const colors = ["green", "white", "black", "red"];
-    const shapes = ["star", "diamond", "triangle"];
+  <div class="swipe-tip" id="swipeTip">
+    上滑进入下一环节 · 下滑返回上一环节
+  </div>
+
+  <script>
+    const splash = document.getElementById("splash");
+    const enterBtn = document.getElementById("enterBtn");
+    const app = document.getElementById("app");
+    const stageTrack = document.getElementById("stageTrack");
+    const dots = document.querySelectorAll(".dot");
+    const stages = document.querySelectorAll(".stage");
+
+    let currentStage = 0;
+    let isEntered = false;
+    let isSwitching = false;
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    function goToStage(index) {
+      if (index < 0 || index >= stages.length || isSwitching) return;
+
+      isSwitching = true;
+      currentStage = index;
+
+      stageTrack.style.transform = `translateY(-${currentStage * 100}svh)`;
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === currentStage);
+      });
+
+      if (currentStage === 1) {
+        setTimeout(() => {
+          resizeCanvas();
+          launchFireworkAtRandom();
+        }, 450);
+      }
+
+      setTimeout(() => {
+        isSwitching = false;
+      }, 850);
+    }
+
+    function nextStage() {
+      goToStage(currentStage + 1);
+    }
+
+    function prevStage() {
+      goToStage(currentStage - 1);
+    }
+
+    enterBtn.addEventListener("click", () => {
+      splash.classList.add("hide");
+      app.classList.add("show");
+      document.body.classList.add("entered");
+      isEntered = true;
+      goToStage(0);
+    });
+
+    document.querySelectorAll("[data-next]").forEach(btn => {
+      btn.addEventListener("click", nextStage);
+    });
+
+    document.querySelectorAll("[data-prev]").forEach(btn => {
+      btn.addEventListener("click", prevStage);
+    });
+
+    dots.forEach(dot => {
+      dot.addEventListener("click", () => {
+        if (!isEntered) return;
+        goToStage(Number(dot.dataset.go));
+      });
+    });
+
+    window.addEventListener("wheel", (e) => {
+      if (!isEntered) return;
+
+      e.preventDefault();
+
+      if (Math.abs(e.deltaY) < 28) return;
+
+      if (e.deltaY > 0) {
+        nextStage();
+      } else {
+        prevStage();
+      }
+    }, { passive: false });
+
+    window.addEventListener("touchstart", (e) => {
+      if (!isEntered) return;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener("touchend", (e) => {
+      if (!isEntered) return;
+
+      touchEndY = e.changedTouches[0].clientY;
+      const diff = touchStartY - touchEndY;
+
+      if (Math.abs(diff) < 55) return;
+
+      if (diff > 0) {
+        nextStage();
+      } else {
+        prevStage();
+      }
+    }, { passive: true });
+
+    const confettiLayer = document.getElementById("confettiLayer");
+    const confettiColors = ["green", "white", "black", "red"];
+    const confettiShapes = ["star", "diamond", "triangle"];
 
     function createConfetti() {
       const piece = document.createElement("span");
-
-      const color = colors[Math.floor(Math.random() * colors.length)];
-      const shape = shapes[Math.floor(Math.random() * shapes.length)];
+      const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+      const shape = confettiShapes[Math.floor(Math.random() * confettiShapes.length)];
 
       piece.className = `confetti ${color} ${shape}`;
 
@@ -1327,28 +1533,12 @@
 
     setInterval(createConfetti, 520);
 
-    const camilBtn = document.getElementById("camilBtn");
-    const secretWrap = document.getElementById("secretWrap");
-
-    camilBtn.addEventListener("click", () => {
-      const isOpen = secretWrap.classList.toggle("show");
-
-      if (isOpen) {
-        camilBtn.textContent = "收起卡米尔的祝福💚";
-      } else {
-        camilBtn.textContent = "点我，卡米尔有话说💚";
-      }
-    });
-
     const canvas = document.getElementById("fireworkCanvas");
     const ctx = canvas.getContext("2d");
     const fireworkStage = document.getElementById("fireworkStage");
     const fireworkBtn = document.getElementById("fireworkBtn");
 
     let particles = [];
-    let lastY = null;
-    let lastTouchY = null;
-    let fireworkCooldown = false;
 
     function resizeCanvas() {
       const rect = fireworkStage.getBoundingClientRect();
@@ -1356,23 +1546,22 @@
       canvas.height = rect.height;
     }
 
-    resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
     function randomFirework(x, y) {
       const fireColors = ["#A6D03B", "#ffffff", "#e32626", "#ffd166", "#7bdff2"];
 
-      for (let i = 0; i < 80; i++) {
+      for (let i = 0; i < 90; i++) {
         const angle = Math.PI * 2 * Math.random();
-        const speed = Math.random() * 4 + 1.5;
-        const radius = Math.random() * 2.5 + 1.5;
+        const speed = Math.random() * 4.2 + 1.4;
+        const radius = Math.random() * 2.6 + 1.4;
 
         particles.push({
           x,
           y,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
-          life: 90,
+          life: 92,
           alpha: 1,
           radius,
           color: fireColors[Math.floor(Math.random() * fireColors.length)]
@@ -1381,64 +1570,24 @@
     }
 
     function launchFireworkAtRandom() {
+      if (!canvas.width || !canvas.height) return;
+
       const x = Math.random() * canvas.width * 0.76 + canvas.width * 0.12;
       const y = Math.random() * canvas.height * 0.45 + canvas.height * 0.16;
-      randomFirework(x, y);
-    }
-
-    function triggerFireworkBySwipe(clientX, clientY) {
-      if (fireworkCooldown) return;
-
-      const rect = canvas.getBoundingClientRect();
-      const x = clientX - rect.left;
-      const y = clientY - rect.top;
 
       randomFirework(x, y);
-
-      fireworkCooldown = true;
-      setTimeout(() => {
-        fireworkCooldown = false;
-      }, 360);
     }
-
-    fireworkStage.addEventListener("mousemove", (e) => {
-      if (lastY !== null && e.clientY < lastY - 18) {
-        triggerFireworkBySwipe(e.clientX, e.clientY);
-      }
-
-      lastY = e.clientY;
-    });
-
-    fireworkStage.addEventListener("mouseleave", () => {
-      lastY = null;
-    });
-
-    fireworkStage.addEventListener("touchstart", (e) => {
-      lastTouchY = e.touches[0].clientY;
-    });
-
-    fireworkStage.addEventListener("touchmove", (e) => {
-      const touch = e.touches[0];
-
-      if (lastTouchY !== null && touch.clientY < lastTouchY - 20) {
-        triggerFireworkBySwipe(touch.clientX, touch.clientY);
-      }
-
-      lastTouchY = touch.clientY;
-    });
-
-    fireworkStage.addEventListener("touchend", () => {
-      lastTouchY = null;
-    });
 
     fireworkBtn.addEventListener("click", (e) => {
       e.stopPropagation();
+      resizeCanvas();
       launchFireworkAtRandom();
       setTimeout(launchFireworkAtRandom, 160);
       setTimeout(launchFireworkAtRandom, 320);
     });
 
     fireworkStage.addEventListener("click", (e) => {
+      resizeCanvas();
       const rect = canvas.getBoundingClientRect();
       randomFirework(e.clientX - rect.left, e.clientY - rect.top);
     });
@@ -1451,7 +1600,7 @@
         p.y += p.vy;
         p.vy += 0.035;
         p.life--;
-        p.alpha = p.life / 90;
+        p.alpha = p.life / 92;
 
         ctx.globalAlpha = Math.max(p.alpha, 0);
         ctx.beginPath();
@@ -1468,6 +1617,7 @@
       requestAnimationFrame(animateFireworks);
     }
 
+    resizeCanvas();
     animateFireworks();
 
     const cakeBtn = document.getElementById("cakeBtn");
@@ -1478,18 +1628,19 @@
     deliverCakeBtn.addEventListener("click", () => {
       cakeDelivery.classList.add("arrive");
 
-      deliverCakeBtn.textContent = "卡米尔已经走出来送上蛋糕啦 💚";
+      deliverCakeBtn.textContent = "卡米尔已经送到啦 💚";
       deliverCakeBtn.disabled = true;
 
       setTimeout(() => {
         cakeBtn.disabled = false;
-        cakeBtn.classList.add("ready");
       }, 1100);
 
       setTimeout(() => {
-        launchFireworkAtRandom();
-        setTimeout(launchFireworkAtRandom, 180);
-        setTimeout(launchFireworkAtRandom, 360);
+        if (currentStage === 2) {
+          launchFireworkAtRandom();
+          setTimeout(launchFireworkAtRandom, 180);
+          setTimeout(launchFireworkAtRandom, 360);
+        }
       }, 850);
     });
 
