@@ -12,6 +12,13 @@
       box-sizing: border-box;
     }
 
+    :root {
+      --app-h: 100svh;
+      --green: #A6D03B;
+      --red: #e32626;
+      --black: #202020;
+    }
+
     html,
     body {
       width: 100%;
@@ -47,7 +54,7 @@
     }
 
     .confetti.green {
-      background: #A6D03B;
+      background: var(--green);
     }
 
     .confetti.white {
@@ -60,7 +67,7 @@
     }
 
     .confetti.red {
-      background: #e32626;
+      background: var(--red);
     }
 
     .confetti.star {
@@ -182,7 +189,7 @@
       width: 9px;
       height: 9px;
       border-radius: 50%;
-      background: #A6D03B;
+      background: var(--green);
       box-shadow: 0 0 12px rgba(166, 208, 59, 0.9);
     }
 
@@ -198,7 +205,7 @@
     }
 
     .splash h1 span {
-      color: #A6D03B;
+      color: var(--green);
       text-shadow: 3px 3px 0 #202020;
     }
 
@@ -259,15 +266,15 @@
 
     .stage-track {
       width: 100%;
-      height: 100%;
+      height: var(--app-h);
       transition: transform 0.82s cubic-bezier(0.18, 0.88, 0.2, 1);
       will-change: transform;
     }
 
     .stage {
       width: 100%;
-      height: 100svh;
-      padding: 26px 18px;
+      height: var(--app-h);
+      padding: 22px 18px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -277,7 +284,7 @@
 
     .stage-card {
       width: min(1120px, 94vw);
-      height: min(820px, 92svh);
+      height: min(780px, calc(var(--app-h) - 44px));
       border-radius: 34px;
       background: rgba(255, 255, 255, 0.72);
       backdrop-filter: blur(18px);
@@ -286,7 +293,7 @@
       box-shadow:
         0 24px 70px rgba(0, 0, 0, 0.12),
         inset 0 0 0 1px rgba(166, 208, 59, 0.2);
-      padding: clamp(20px, 3vw, 34px);
+      padding: clamp(18px, 2.6vw, 30px);
       position: relative;
       overflow: hidden;
       display: flex;
@@ -330,7 +337,7 @@
       color: #ffffff;
       font-size: 13px;
       letter-spacing: 1px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       flex-shrink: 0;
     }
 
@@ -338,7 +345,7 @@
       width: 9px;
       height: 9px;
       border-radius: 50%;
-      background: #A6D03B;
+      background: var(--green);
       box-shadow: 0 0 10px rgba(166, 208, 59, 0.9);
     }
 
@@ -347,12 +354,12 @@
       font-size: clamp(28px, 5vw, 50px);
       line-height: 1.1;
       font-weight: 900;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: #181818;
     }
 
     .stage-title .green {
-      color: #A6D03B;
+      color: var(--green);
       text-shadow: 2px 2px 0 #202020;
     }
 
@@ -360,29 +367,50 @@
       text-align: center;
       font-size: 15px;
       color: #666;
-      line-height: 1.7;
-      margin-bottom: 18px;
+      line-height: 1.6;
+      margin-bottom: 14px;
       max-width: 680px;
       flex-shrink: 0;
     }
 
+    /* Part 01 专门适配：防止九宫格和祝福文字被裁掉 */
+    .stage[data-stage="0"] .stage-card {
+      justify-content: flex-start;
+      padding-top: clamp(16px, 2.2vw, 24px);
+      padding-bottom: clamp(14px, 2vw, 22px);
+    }
+
+    .stage[data-stage="0"] .stage-number {
+      margin-bottom: 8px;
+    }
+
+    .stage[data-stage="0"] .stage-title {
+      font-size: clamp(28px, 4.4vw, 44px);
+      margin-bottom: 4px;
+    }
+
+    .stage[data-stage="0"] .stage-desc {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
     .gallery-grid {
-      width: min(68vh, 500px, 86vw);
+      width: min(46vh, 390px, 76vw);
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin: 0 auto 14px;
+      gap: 8px;
+      margin: 0 auto 12px;
       flex-shrink: 0;
     }
 
     .photo-card {
       position: relative;
       aspect-ratio: 1 / 1;
-      border-radius: 20px;
+      border-radius: 18px;
       overflow: hidden;
       background: #f0f3ec;
       border: 2px solid rgba(32, 32, 32, 0.08);
-      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.1);
       cursor: pointer;
       transition: transform 0.35s ease, box-shadow 0.35s ease;
     }
@@ -422,45 +450,88 @@
     }
 
     .center-avatar {
-      border: 3px solid #A6D03B;
+      border: 3px solid var(--green);
       box-shadow:
         0 18px 40px rgba(0, 0, 0, 0.18),
-        0 0 0 6px rgba(166, 208, 59, 0.15);
+        0 0 0 5px rgba(166, 208, 59, 0.15);
     }
 
     .center-avatar::after {
       content: "主角登场";
       position: absolute;
       left: 50%;
-      bottom: 10px;
+      bottom: 8px;
       transform: translateX(-50%);
       z-index: 2;
-      padding: 5px 11px;
+      padding: 4px 10px;
       border-radius: 999px;
       background: rgba(32, 32, 32, 0.82);
       color: #fff;
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: 1px;
       white-space: nowrap;
     }
 
     .wish-box {
-      width: min(880px, 92%);
+      width: min(760px, 88%);
       position: relative;
-      padding: 16px 20px;
-      border-radius: 22px;
+      padding: 13px 18px 13px 21px;
+      border-radius: 20px;
       background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(248, 250, 241, 0.88));
-      border: 1px solid rgba(166, 208, 59, 0.35);
+        linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(248, 250, 241, 0.94));
+      border: 1px solid rgba(166, 208, 59, 0.38);
+      box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.05),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.55);
       color: #333;
-      line-height: 1.75;
+      flex-shrink: 0;
+      text-align: left;
+      overflow: hidden;
+    }
+
+    .wish-box::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 13px;
+      bottom: 13px;
+      width: 5px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--green), var(--red));
+    }
+
+    .wish-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
       font-size: 14px;
-      margin-bottom: 6px;
+      font-weight: 900;
+      color: #202020;
+    }
+
+    .wish-head-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px rgba(166, 208, 59, 0.85);
       flex-shrink: 0;
     }
 
+    .wish-text {
+      font-size: 13px;
+      line-height: 1.62;
+      color: #333;
+    }
+
+    .wish-text + .wish-text {
+      margin-top: 3px;
+    }
+
     .wish-box strong {
-      color: #e32626;
+      color: var(--red);
+      font-weight: 900;
     }
 
     .stage-btn-row {
@@ -478,7 +549,7 @@
     .ghost-btn {
       border: none;
       outline: none;
-      padding: 14px 24px;
+      padding: 13px 23px;
       border-radius: 999px;
       font-size: 16px;
       font-weight: 800;
@@ -498,7 +569,7 @@
     }
 
     .ghost-btn {
-      background: #A6D03B;
+      background: var(--green);
       color: #202020;
       box-shadow: 0 12px 26px rgba(166, 208, 59, 0.28);
     }
@@ -551,7 +622,7 @@
 
     .firework-content h3 {
       font-size: clamp(32px, 7vw, 62px);
-      color: #A6D03B;
+      color: var(--green);
       margin-bottom: 12px;
       text-shadow: 0 0 24px rgba(166, 208, 59, 0.48);
       font-weight: 900;
@@ -670,7 +741,6 @@
       user-select: none;
     }
 
-    /* 已优化：蛋糕文字位置 */
     .cake-lettering {
       position: absolute;
       left: 50%;
@@ -687,7 +757,7 @@
       line-height: 1;
       font-weight: 900;
       letter-spacing: 1.5px;
-      color: #A6D03B;
+      color: var(--green);
       text-shadow:
         0 1px 0 #ffffff,
         0 2px 4px rgba(0, 0, 0, 0.18);
@@ -848,7 +918,7 @@
     }
 
     .cake-message-inner span {
-      color: #A6D03B;
+      color: var(--green);
       font-weight: 900;
     }
 
@@ -900,14 +970,14 @@
 
     .dot.active {
       height: 34px;
-      background: #A6D03B;
+      background: var(--green);
       box-shadow: 0 0 14px rgba(166, 208, 59, 0.75);
     }
 
     .swipe-tip {
       position: fixed;
       left: 50%;
-      bottom: 16px;
+      bottom: 12px;
       transform: translateX(-50%);
       z-index: 12;
       font-size: 13px;
@@ -921,6 +991,58 @@
 
     body.entered .swipe-tip {
       opacity: 1;
+    }
+
+    @media (max-height: 760px) and (min-width: 721px) {
+      .stage {
+        padding: 14px 16px;
+      }
+
+      .stage-card {
+        height: calc(var(--app-h) - 28px);
+        padding: 16px 22px;
+      }
+
+      .stage[data-stage="0"] .stage-title {
+        font-size: clamp(26px, 4vw, 38px);
+      }
+
+      .stage[data-stage="0"] .stage-desc {
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+
+      .gallery-grid {
+        width: min(42vh, 350px, 70vw);
+        gap: 7px;
+        margin-bottom: 9px;
+      }
+
+      .wish-box {
+        width: min(720px, 86%);
+        padding: 11px 16px 11px 20px;
+      }
+
+      .wish-head {
+        font-size: 13px;
+        margin-bottom: 3px;
+      }
+
+      .wish-text {
+        font-size: 12.2px;
+        line-height: 1.5;
+      }
+
+      .stage-btn-row {
+        padding-top: 6px;
+        margin-top: 4px;
+      }
+
+      .main-btn,
+      .ghost-btn {
+        padding: 11px 20px;
+        font-size: 14px;
+      }
     }
 
     @media (max-width: 720px) {
@@ -939,19 +1061,19 @@
       }
 
       .stage {
-        padding: 14px 10px;
+        padding: 12px 10px;
       }
 
       .stage-card {
         width: 94vw;
-        height: 93svh;
-        padding: 16px 12px;
+        height: calc(var(--app-h) - 24px);
+        padding: 14px 12px;
         border-radius: 26px;
       }
 
       .stage-number {
         font-size: 11px;
-        margin-bottom: 8px;
+        margin-bottom: 7px;
       }
 
       .stage-title {
@@ -964,14 +1086,24 @@
         margin-bottom: 8px;
       }
 
+      .stage[data-stage="0"] .stage-title {
+        font-size: 24px;
+      }
+
+      .stage[data-stage="0"] .stage-desc {
+        font-size: 11.5px;
+        line-height: 1.45;
+        margin-bottom: 7px;
+      }
+
       .gallery-grid {
-        width: min(82vw, 350px);
-        gap: 7px;
-        margin-bottom: 10px;
+        width: min(58vh, 330px, 82vw);
+        gap: 6px;
+        margin-bottom: 8px;
       }
 
       .photo-card {
-        border-radius: 15px;
+        border-radius: 14px;
       }
 
       .center-avatar::after {
@@ -982,22 +1114,46 @@
 
       .wish-box {
         width: 92%;
-        padding: 12px 13px;
-        font-size: 12px;
-        line-height: 1.55;
+        padding: 10px 13px 10px 16px;
+        border-radius: 18px;
+      }
+
+      .wish-box::before {
+        top: 10px;
+        bottom: 10px;
+        width: 4px;
+      }
+
+      .wish-head {
+        font-size: 12.5px;
+        margin-bottom: 3px;
+      }
+
+      .wish-head-dot {
+        width: 8px;
+        height: 8px;
+      }
+
+      .wish-text {
+        font-size: 11.4px;
+        line-height: 1.45;
+      }
+
+      .wish-text + .wish-text {
+        margin-top: 2px;
       }
 
       .main-btn,
       .ghost-btn {
         width: 100%;
-        padding: 13px 16px;
-        font-size: 15px;
+        padding: 12px 16px;
+        font-size: 14px;
       }
 
       .stage-btn-row {
-        gap: 10px;
-        padding-top: 8px;
-        margin-top: 4px;
+        gap: 8px;
+        padding-top: 7px;
+        margin-top: 3px;
       }
 
       .firework-stage-box {
@@ -1082,7 +1238,7 @@
       }
 
       .stage-nav {
-        right: 10px;
+        right: 8px;
         gap: 8px;
       }
 
@@ -1096,33 +1252,42 @@
       }
 
       .swipe-tip {
-        font-size: 12px;
-        bottom: 8px;
+        font-size: 11px;
+        bottom: 6px;
       }
     }
 
     @media (max-width: 480px) {
       .stage-card {
-        height: 93svh;
+        width: 95vw;
+        height: calc(var(--app-h) - 22px);
       }
 
       .gallery-grid {
-        width: min(82vw, 310px);
+        width: min(54vh, 300px, 81vw);
         gap: 6px;
       }
 
       .stage-title {
-        font-size: 24px;
+        font-size: 23px;
       }
 
       .stage-desc {
-        font-size: 12px;
+        font-size: 11.5px;
       }
 
       .wish-box {
-        font-size: 11.5px;
-        line-height: 1.5;
-        padding: 10px 12px;
+        width: 92%;
+        padding: 9px 11px 9px 15px;
+      }
+
+      .wish-head {
+        font-size: 12px;
+      }
+
+      .wish-text {
+        font-size: 10.8px;
+        line-height: 1.42;
       }
 
       .cake-scene {
@@ -1276,10 +1441,20 @@
           </div>
 
           <div class="wish-box">
-            生日快乐呀！16岁是很特别的一年，是慢慢长大、也继续保持可爱的一年。
-            愿你一直像你喜欢的<strong>卡米尔</strong>一样，有自己的判断，也有坚定向前的勇气。
-            愿你的<strong>聪明</strong>被看见，你的<strong>帅气</strong>被喜欢，
-            你的每一次<strong>成长</strong>都闪闪发光。新的一岁，继续做很酷、很温柔、也很独一无二的自己吧。
+            <div class="wish-head">
+              <span class="wish-head-dot"></span>
+              给今天16岁的你
+            </div>
+
+            <p class="wish-text">
+              生日快乐呀！16岁是很特别的一年，是慢慢长大、也继续保持可爱的一年。
+              愿你一直像你喜欢的<strong>卡米尔</strong>一样，有自己的判断，也有坚定向前的勇气。
+            </p>
+
+            <p class="wish-text">
+              愿你的<strong>聪明</strong>被看见，你的<strong>帅气</strong>被喜欢，
+              你的每一次<strong>成长</strong>都闪闪发光。新的一岁，继续做很酷、很温柔、也很独一无二的自己吧。
+            </p>
           </div>
 
           <div class="stage-btn-row">
@@ -1396,6 +1571,17 @@
   </div>
 
   <script>
+    function setAppHeight() {
+      document.documentElement.style.setProperty("--app-h", `${window.innerHeight}px`);
+    }
+
+    setAppHeight();
+    window.addEventListener("resize", () => {
+      setAppHeight();
+      applyStageTransform();
+      resizeCanvas();
+    });
+
     const splash = document.getElementById("splash");
     const enterBtn = document.getElementById("enterBtn");
     const app = document.getElementById("app");
@@ -1409,13 +1595,21 @@
     let touchStartY = 0;
     let touchEndY = 0;
 
+    function getStageHeight() {
+      return window.innerHeight;
+    }
+
+    function applyStageTransform() {
+      stageTrack.style.transform = `translate3d(0, -${currentStage * getStageHeight()}px, 0)`;
+    }
+
     function goToStage(index) {
       if (index < 0 || index >= stages.length || isSwitching) return;
 
       isSwitching = true;
       currentStage = index;
 
-      stageTrack.style.transform = `translateY(-${currentStage * 100}svh)`;
+      applyStageTransform();
 
       dots.forEach((dot, i) => {
         dot.classList.toggle("active", i === currentStage);
@@ -1541,12 +1735,11 @@
     let particles = [];
 
     function resizeCanvas() {
+      if (!fireworkStage) return;
       const rect = fireworkStage.getBoundingClientRect();
       canvas.width = rect.width;
       canvas.height = rect.height;
     }
-
-    window.addEventListener("resize", resizeCanvas);
 
     function randomFirework(x, y) {
       const fireColors = ["#A6D03B", "#ffffff", "#e32626", "#ffd166", "#7bdff2"];
