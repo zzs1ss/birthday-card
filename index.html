@@ -13,10 +13,13 @@
     }
 
     :root {
-      --app-h: 100svh;
+      --app-h: 100dvh;
       --green: #A6D03B;
-      --red: #e32626;
+      --green-deep: #719800;
+      --red: #E32626;
       --black: #202020;
+      --cream: #fbfff4;
+      --glass: rgba(255, 255, 255, 0.72);
     }
 
     html,
@@ -25,11 +28,12 @@
       height: 100%;
       overflow: hidden;
       font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
-      color: #202020;
+      color: var(--black);
       background:
-        radial-gradient(circle at 20% 10%, rgba(166, 208, 59, 0.26), transparent 28%),
-        radial-gradient(circle at 80% 20%, rgba(227, 38, 38, 0.12), transparent 26%),
-        linear-gradient(135deg, #f8faf3 0%, #eef3e7 45%, #f7f7f7 100%);
+        radial-gradient(circle at 12% 12%, rgba(166, 208, 59, 0.35), transparent 28%),
+        radial-gradient(circle at 92% 14%, rgba(227, 38, 38, 0.13), transparent 25%),
+        radial-gradient(circle at 48% 92%, rgba(166, 208, 59, 0.13), transparent 30%),
+        linear-gradient(135deg, #f7faef 0%, #eef4e8 45%, #fff8f6 100%);
     }
 
     button {
@@ -49,25 +53,17 @@
       top: -40px;
       width: 12px;
       height: 12px;
-      opacity: 0.82;
+      opacity: 0.78;
       animation: fall linear infinite;
     }
 
-    .confetti.green {
-      background: var(--green);
-    }
+    .confetti.green { background: var(--green); }
+    .confetti.red { background: var(--red); }
+    .confetti.black { background: var(--black); }
 
     .confetti.white {
-      background: #ffffff;
+      background: #fff;
       border: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    .confetti.black {
-      background: #202020;
-    }
-
-    .confetti.red {
-      background: var(--red);
     }
 
     .confetti.star {
@@ -85,12 +81,12 @@
       );
     }
 
-    .confetti.diamond {
-      transform: rotate(45deg);
-    }
-
     .confetti.triangle {
       clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+    .confetti.diamond {
+      transform: rotate(45deg);
     }
 
     @keyframes fall {
@@ -100,7 +96,7 @@
       }
 
       10% {
-        opacity: 0.9;
+        opacity: 0.88;
       }
 
       100% {
@@ -118,9 +114,9 @@
       justify-content: center;
       padding: 24px;
       background:
-        radial-gradient(circle at 50% 35%, rgba(166, 208, 59, 0.38), transparent 24%),
-        radial-gradient(circle at 78% 22%, rgba(227, 38, 38, 0.13), transparent 22%),
-        linear-gradient(135deg, #fbfff6 0%, #edf4e5 45%, #ffffff 100%);
+        radial-gradient(circle at 50% 36%, rgba(166, 208, 59, 0.38), transparent 24%),
+        radial-gradient(circle at 80% 22%, rgba(227, 38, 38, 0.13), transparent 23%),
+        linear-gradient(135deg, #fbfff6 0%, #edf4e5 50%, #ffffff 100%);
       transition: opacity 0.75s ease, transform 0.75s ease;
     }
 
@@ -131,28 +127,28 @@
     }
 
     .splash-card {
-      width: min(92vw, 760px);
-      border-radius: 34px;
-      padding: 46px 34px;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(166, 208, 59, 0.38);
-      box-shadow:
-        0 28px 70px rgba(0, 0, 0, 0.14),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+      width: min(92vw, 780px);
       position: relative;
       overflow: hidden;
+      text-align: center;
+      border-radius: 38px;
+      padding: 48px 36px;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(166, 208, 59, 0.36);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow:
+        0 30px 76px rgba(0, 0, 0, 0.16),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.72);
     }
 
     .splash-card::before {
       content: "";
       position: absolute;
+      right: -90px;
+      top: -90px;
       width: 240px;
       height: 240px;
-      right: -100px;
-      top: -90px;
       background: rgba(166, 208, 59, 0.28);
       clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 18% 100%, 0% 35%);
       transform: rotate(18deg);
@@ -161,10 +157,10 @@
     .splash-card::after {
       content: "";
       position: absolute;
-      width: 210px;
-      height: 210px;
       left: -90px;
-      bottom: -80px;
+      bottom: -86px;
+      width: 220px;
+      height: 220px;
       background: rgba(227, 38, 38, 0.12);
       clip-path: polygon(0 0, 100% 25%, 70% 100%, 10% 78%);
       transform: rotate(-12deg);
@@ -172,17 +168,17 @@
 
     .splash-tag {
       position: relative;
+      z-index: 1;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 14px;
+      padding: 8px 15px;
       border-radius: 999px;
-      background: #202020;
-      color: #ffffff;
+      background: var(--black);
+      color: #fff;
       font-size: 13px;
       letter-spacing: 1px;
       margin-bottom: 20px;
-      z-index: 1;
     }
 
     .splash-tag span {
@@ -196,17 +192,17 @@
     .splash h1 {
       position: relative;
       z-index: 1;
-      font-size: clamp(44px, 8vw, 86px);
-      line-height: 0.95;
+      font-size: clamp(46px, 8vw, 88px);
+      line-height: 0.94;
+      font-weight: 950;
       letter-spacing: -2px;
-      font-weight: 900;
       color: #171717;
       margin-bottom: 18px;
     }
 
     .splash h1 span {
       color: var(--green);
-      text-shadow: 3px 3px 0 #202020;
+      text-shadow: 3px 3px 0 var(--black);
     }
 
     .splash p {
@@ -214,9 +210,9 @@
       z-index: 1;
       max-width: 560px;
       margin: 0 auto 28px;
+      color: #4a4a4a;
       font-size: 17px;
       line-height: 1.8;
-      color: #444;
     }
 
     .enter-btn {
@@ -224,21 +220,21 @@
       z-index: 1;
       border: none;
       outline: none;
-      padding: 16px 30px;
+      padding: 16px 32px;
       border-radius: 999px;
-      color: #ffffff;
-      background: #202020;
+      background: var(--black);
+      color: #fff;
       font-size: 18px;
-      font-weight: 800;
+      font-weight: 900;
       cursor: pointer;
       box-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      transition: 0.25s ease;
     }
 
     .enter-btn:hover {
       transform: translateY(-3px);
-      background: #111111;
-      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.3);
+      background: #111;
+      box-shadow: 0 22px 42px rgba(0, 0, 0, 0.3);
     }
 
     .enter-tip {
@@ -278,24 +274,23 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
       overflow: hidden;
     }
 
     .stage-card {
-      width: min(1120px, 94vw);
-      height: min(780px, calc(var(--app-h) - 44px));
-      border-radius: 34px;
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.72);
-      box-shadow:
-        0 24px 70px rgba(0, 0, 0, 0.12),
-        inset 0 0 0 1px rgba(166, 208, 59, 0.2);
-      padding: clamp(18px, 2.6vw, 30px);
+      width: min(1140px, 94vw);
+      height: min(790px, calc(var(--app-h) - 44px));
       position: relative;
       overflow: hidden;
+      border-radius: 36px;
+      padding: clamp(20px, 2.8vw, 34px);
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow:
+        0 28px 76px rgba(0, 0, 0, 0.13),
+        inset 0 0 0 1px rgba(166, 208, 59, 0.18);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -304,11 +299,11 @@
     .stage-card::before {
       content: "";
       position: absolute;
+      right: -78px;
       top: -90px;
-      right: -80px;
       width: 230px;
       height: 230px;
-      background: rgba(166, 208, 59, 0.24);
+      background: rgba(166, 208, 59, 0.22);
       clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 18% 100%, 0% 35%);
       transform: rotate(18deg);
       z-index: -1;
@@ -317,10 +312,10 @@
     .stage-card::after {
       content: "";
       position: absolute;
-      left: -80px;
-      bottom: -70px;
-      width: 210px;
-      height: 210px;
+      left: -84px;
+      bottom: -74px;
+      width: 220px;
+      height: 220px;
       background: rgba(227, 38, 38, 0.1);
       clip-path: polygon(0 0, 100% 25%, 70% 100%, 10% 78%);
       transform: rotate(-12deg);
@@ -331,14 +326,13 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 7px 13px;
+      padding: 7px 14px;
       border-radius: 999px;
-      background: rgba(32, 32, 32, 0.9);
-      color: #ffffff;
+      background: rgba(32, 32, 32, 0.92);
+      color: #fff;
       font-size: 13px;
       letter-spacing: 1px;
-      margin-bottom: 10px;
-      flex-shrink: 0;
+      white-space: nowrap;
     }
 
     .stage-number span {
@@ -351,80 +345,280 @@
 
     .stage-title {
       text-align: center;
-      font-size: clamp(28px, 5vw, 50px);
+      font-size: clamp(30px, 5vw, 52px);
       line-height: 1.1;
-      font-weight: 900;
-      margin-bottom: 6px;
+      font-weight: 950;
+      letter-spacing: -0.8px;
       color: #181818;
     }
 
     .stage-title .green {
       color: var(--green);
-      text-shadow: 2px 2px 0 #202020;
+      text-shadow: 2px 2px 0 var(--black);
     }
 
     .stage-desc {
       text-align: center;
       font-size: 15px;
       color: #666;
-      line-height: 1.6;
-      margin-bottom: 14px;
+      line-height: 1.65;
       max-width: 680px;
+    }
+
+    .stage-content-center {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 0;
+    }
+
+    .stage-head {
+      text-align: center;
+      margin-bottom: 16px;
       flex-shrink: 0;
     }
 
-    /* Part 01 专门适配：防止九宫格和祝福文字被裁掉 */
-    .stage[data-stage="0"] .stage-card {
-      justify-content: flex-start;
-      padding-top: clamp(16px, 2.2vw, 24px);
-      padding-bottom: clamp(14px, 2vw, 22px);
+    .stage-head .stage-number {
+      margin-bottom: 10px;
     }
 
-    .stage[data-stage="0"] .stage-number {
+    .stage-head .stage-title {
       margin-bottom: 8px;
     }
 
-    .stage[data-stage="0"] .stage-title {
-      font-size: clamp(28px, 4.4vw, 44px);
-      margin-bottom: 4px;
+    /* PART 01 */
+    .stage[data-stage="0"] .stage-card {
+      justify-content: center;
     }
 
-    .stage[data-stage="0"] .stage-desc {
-      margin-bottom: 10px;
+    .photo-showcase {
+      width: min(980px, 92%);
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: clamp(26px, 4.2vw, 48px);
+      align-items: center;
+    }
+
+    .blessing-panel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 32px;
+      padding: clamp(24px, 3vw, 34px);
+      min-height: 520px;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(166, 208, 59, 0.26), transparent 28%),
+        linear-gradient(145deg, #1f1f1f 0%, #2a2a2a 55%, #151515 100%);
+      color: #fff;
+      box-shadow:
+        0 22px 52px rgba(0, 0, 0, 0.24),
+        inset 0 0 0 1px rgba(166, 208, 59, 0.35);
+    }
+
+    .blessing-panel::before {
+      content: "16";
+      position: absolute;
+      right: -8px;
+      top: 8px;
+      font-size: 160px;
+      line-height: 1;
+      font-weight: 950;
+      color: rgba(166, 208, 59, 0.1);
+      letter-spacing: -12px;
+    }
+
+    .blessing-panel::after {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      left: -70px;
+      bottom: -70px;
+      border-radius: 50%;
+      background: rgba(227, 38, 38, 0.18);
+      filter: blur(2px);
+    }
+
+    .blessing-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .blessing-panel .stage-number {
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .blessing-title {
+      font-size: clamp(34px, 4.2vw, 54px);
+      line-height: 1.06;
+      font-weight: 950;
+      letter-spacing: -1px;
+      margin-bottom: 14px;
+    }
+
+    .blessing-title span {
+      color: var(--green);
+      text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.65);
+    }
+
+    .blessing-sub {
+      max-width: 390px;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 15px;
+      line-height: 1.75;
+      margin-bottom: 18px;
+    }
+
+    .mini-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .mini-tag {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      color: #202020;
+      background: var(--green);
+    }
+
+    .mini-tag.red {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .wish-card {
+      border-radius: 22px;
+      padding: 18px 18px 18px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      margin-bottom: 20px;
+    }
+
+    .wish-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 9px;
+    }
+
+    .wish-head-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px rgba(166, 208, 59, 0.9);
+    }
+
+    .wish-text {
+      color: rgba(255, 255, 255, 0.88);
       font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .wish-text + .wish-text {
+      margin-top: 6px;
+    }
+
+    .wish-text strong {
+      color: #ff5a5a;
+      font-weight: 950;
+    }
+
+    .photo-btn-row {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .photo-wall-panel {
+      position: relative;
+      border-radius: 34px;
+      padding: 22px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(250, 255, 238, 0.78));
+      border: 1px solid rgba(166, 208, 59, 0.3);
+      box-shadow:
+        0 22px 56px rgba(0, 0, 0, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+    }
+
+    .photo-wall-panel::before {
+      content: "";
+      position: absolute;
+      right: -18px;
+      top: -18px;
+      width: 84px;
+      height: 84px;
+      border-radius: 24px;
+      background: rgba(166, 208, 59, 0.25);
+      transform: rotate(8deg);
+      z-index: -1;
+    }
+
+    .photo-wall-panel::after {
+      content: "";
+      position: absolute;
+      left: -16px;
+      bottom: -16px;
+      width: 90px;
+      height: 90px;
+      border-radius: 24px;
+      background: rgba(227, 38, 38, 0.12);
+      transform: rotate(-10deg);
+      z-index: -1;
+    }
+
+    .wall-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .wall-title h3 {
+      font-size: 18px;
+      font-weight: 950;
+      color: #202020;
+    }
+
+    .wall-title span {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(32, 32, 32, 0.9);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.6px;
     }
 
     .gallery-grid {
-      width: min(46vh, 390px, 76vw);
+      width: min(42vw, 420px, 58vh);
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin: 0 auto 12px;
-      flex-shrink: 0;
+      gap: 10px;
     }
 
     .photo-card {
       position: relative;
       aspect-ratio: 1 / 1;
-      border-radius: 18px;
       overflow: hidden;
-      background: #f0f3ec;
+      border-radius: 19px;
+      background: #f2f5ed;
       border: 2px solid rgba(32, 32, 32, 0.08);
       box-shadow: 0 12px 26px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-    }
-
-    .photo-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(135deg, rgba(166, 208, 59, 0.22), transparent 45%),
-        linear-gradient(315deg, rgba(227, 38, 38, 0.16), transparent 50%);
-      z-index: 1;
-      opacity: 0;
-      transition: opacity 0.35s ease;
+      transition: 0.35s ease;
     }
 
     .photo-card img {
@@ -432,16 +626,12 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.45s ease, filter 0.45s ease;
+      transition: 0.45s ease;
     }
 
     .photo-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-4px) scale(1.02);
       box-shadow: 0 22px 46px rgba(0, 0, 0, 0.22);
-    }
-
-    .photo-card:hover::before {
-      opacity: 1;
     }
 
     .photo-card:hover img {
@@ -453,11 +643,11 @@
       border: 3px solid var(--green);
       box-shadow:
         0 18px 40px rgba(0, 0, 0, 0.18),
-        0 0 0 5px rgba(166, 208, 59, 0.15);
+        0 0 0 6px rgba(166, 208, 59, 0.15);
     }
 
     .center-avatar::after {
-      content: "主角登场";
+      content: "主角";
       position: absolute;
       left: 50%;
       bottom: 8px;
@@ -472,100 +662,27 @@
       white-space: nowrap;
     }
 
-    .wish-box {
-      width: min(760px, 88%);
-      position: relative;
-      padding: 13px 18px 13px 21px;
-      border-radius: 20px;
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(248, 250, 241, 0.94));
-      border: 1px solid rgba(166, 208, 59, 0.38);
-      box-shadow:
-        0 10px 24px rgba(0, 0, 0, 0.05),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.55);
-      color: #333;
-      flex-shrink: 0;
-      text-align: left;
-      overflow: hidden;
-    }
-
-    .wish-box::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 13px;
-      bottom: 13px;
-      width: 5px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, var(--green), var(--red));
-    }
-
-    .wish-head {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 5px;
-      font-size: 14px;
-      font-weight: 900;
-      color: #202020;
-    }
-
-    .wish-head-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 10px rgba(166, 208, 59, 0.85);
-      flex-shrink: 0;
-    }
-
-    .wish-text {
-      font-size: 13px;
-      line-height: 1.62;
-      color: #333;
-    }
-
-    .wish-text + .wish-text {
-      margin-top: 3px;
-    }
-
-    .wish-box strong {
-      color: var(--red);
-      font-weight: 900;
-    }
-
-    .stage-btn-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-      padding-top: 8px;
-      flex-shrink: 0;
-    }
-
     .main-btn,
     .ghost-btn {
       border: none;
       outline: none;
-      padding: 13px 23px;
+      padding: 13px 24px;
       border-radius: 999px;
       font-size: 16px;
-      font-weight: 800;
+      font-weight: 900;
       cursor: pointer;
       transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
     }
 
     .main-btn {
-      background: #202020;
-      color: #ffffff;
+      background: var(--black);
+      color: #fff;
       box-shadow: 0 12px 26px rgba(0, 0, 0, 0.24);
     }
 
     .main-btn:hover {
       transform: translateY(-3px);
-      background: #111111;
+      background: #111;
     }
 
     .ghost-btn {
@@ -576,9 +693,10 @@
 
     .ghost-btn:hover {
       transform: translateY(-3px);
-      background: #b7e34d;
+      background: #b8e350;
     }
 
+    /* PART 02 */
     .firework-stage-box {
       width: min(940px, 94vw);
       flex: 1;
@@ -621,11 +739,11 @@
     }
 
     .firework-content h3 {
-      font-size: clamp(32px, 7vw, 62px);
+      font-size: clamp(34px, 7vw, 64px);
       color: var(--green);
       margin-bottom: 12px;
       text-shadow: 0 0 24px rgba(166, 208, 59, 0.48);
-      font-weight: 900;
+      font-weight: 950;
     }
 
     .firework-content p {
@@ -635,11 +753,22 @@
       margin-bottom: 20px;
     }
 
+    .stage-btn-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      flex-shrink: 0;
+    }
+
+    /* PART 03 */
     .cake-scene {
       position: relative;
       width: min(920px, 94vw);
       flex: 1;
-      min-height: 360px;
+      min-height: 0;
       border-radius: 30px;
       overflow: hidden;
       perspective: 900px;
@@ -755,7 +884,7 @@
     .cake-line-main {
       font-size: 20px;
       line-height: 1;
-      font-weight: 900;
+      font-weight: 950;
       letter-spacing: 1.5px;
       color: var(--green);
       text-shadow:
@@ -767,11 +896,10 @@
       margin-top: 8px;
       font-size: 9px;
       line-height: 1;
-      font-weight: 900;
+      font-weight: 950;
       letter-spacing: 0.8px;
       color: #ffffff;
-      text-shadow:
-        0 1px 2px rgba(0, 0, 0, 0.28);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.28);
     }
 
     .candle-flame {
@@ -897,10 +1025,11 @@
       overflow: hidden;
       transition: max-height 0.55s ease;
       width: min(720px, 92%);
+      flex-shrink: 0;
     }
 
     .cake-message.show {
-      max-height: 160px;
+      max-height: 180px;
     }
 
     .cake-message-inner {
@@ -919,7 +1048,7 @@
 
     .cake-message-inner span {
       color: var(--green);
-      font-weight: 900;
+      font-weight: 950;
     }
 
     @keyframes popIn {
@@ -965,7 +1094,7 @@
       border: none;
       background: rgba(32, 32, 32, 0.22);
       cursor: pointer;
-      transition: transform 0.25s ease, background 0.25s ease, height 0.25s ease;
+      transition: 0.25s ease;
     }
 
     .dot.active {
@@ -977,7 +1106,7 @@
     .swipe-tip {
       position: fixed;
       left: 50%;
-      bottom: 12px;
+      bottom: max(16px, env(safe-area-inset-bottom));
       transform: translateX(-50%);
       z-index: 12;
       font-size: 13px;
@@ -993,49 +1122,52 @@
       opacity: 1;
     }
 
-    @media (max-height: 760px) and (min-width: 721px) {
+    /* 矮屏电脑 */
+    @media (max-height: 760px) and (min-width: 821px) {
       .stage {
         padding: 14px 16px;
       }
 
       .stage-card {
         height: calc(var(--app-h) - 28px);
-        padding: 16px 22px;
+        padding: 18px 24px;
       }
 
-      .stage[data-stage="0"] .stage-title {
-        font-size: clamp(26px, 4vw, 38px);
+      .photo-showcase {
+        gap: 26px;
       }
 
-      .stage[data-stage="0"] .stage-desc {
+      .blessing-panel {
+        min-height: 500px;
+        padding: 24px;
+      }
+
+      .blessing-title {
+        font-size: clamp(32px, 4vw, 46px);
+      }
+
+      .blessing-sub {
         font-size: 13px;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
       }
 
-      .gallery-grid {
-        width: min(42vh, 350px, 70vw);
-        gap: 7px;
-        margin-bottom: 9px;
+      .mini-tags {
+        margin-bottom: 12px;
       }
 
-      .wish-box {
-        width: min(720px, 86%);
-        padding: 11px 16px 11px 20px;
-      }
-
-      .wish-head {
-        font-size: 13px;
-        margin-bottom: 3px;
+      .wish-card {
+        padding: 14px 16px;
+        margin-bottom: 14px;
       }
 
       .wish-text {
-        font-size: 12.2px;
-        line-height: 1.5;
+        font-size: 12px;
+        line-height: 1.58;
       }
 
-      .stage-btn-row {
-        padding-top: 6px;
-        margin-top: 4px;
+      .gallery-grid {
+        width: min(39vw, 360px, 58vh);
+        gap: 8px;
       }
 
       .main-btn,
@@ -1045,14 +1177,24 @@
       }
     }
 
-    @media (max-width: 720px) {
+    /* 手机和平板 */
+    @media (max-width: 820px) {
+      .splash {
+        padding: 16px;
+      }
+
       .splash-card {
-        padding: 36px 22px;
+        padding: 32px 20px;
         border-radius: 28px;
       }
 
+      .splash h1 {
+        font-size: clamp(42px, 12vw, 62px);
+      }
+
       .splash p {
-        font-size: 15px;
+        font-size: 14px;
+        line-height: 1.65;
       }
 
       .enter-btn {
@@ -1061,19 +1203,130 @@
       }
 
       .stage {
-        padding: 12px 10px;
+        padding: 8px;
       }
 
       .stage-card {
-        width: 94vw;
-        height: calc(var(--app-h) - 24px);
-        padding: 14px 12px;
-        border-radius: 26px;
+        width: 96vw;
+        height: calc(var(--app-h) - 16px);
+        padding: 12px;
+        border-radius: 24px;
+      }
+
+      .stage[data-stage="0"] .stage-card {
+        justify-content: flex-start;
+      }
+
+      .photo-showcase {
+        width: 100%;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        justify-items: center;
+      }
+
+      .photo-wall-panel {
+        width: min(92%, 430px);
+        padding: 10px;
+        border-radius: 22px;
+        order: 1;
+      }
+
+      .wall-title {
+        display: none;
+      }
+
+      .gallery-grid {
+        width: min(43vh, 292px, 78vw);
+        gap: 6px;
+      }
+
+      .photo-card {
+        border-radius: 13px;
+      }
+
+      .center-avatar::after {
+        font-size: 9px;
+        padding: 3px 7px;
+        bottom: 6px;
+      }
+
+      .blessing-panel {
+        width: min(92%, 430px);
+        min-height: auto;
+        padding: 14px;
+        border-radius: 22px;
+        order: 2;
+      }
+
+      .blessing-panel::before {
+        font-size: 74px;
+        right: 8px;
+        top: 8px;
+        letter-spacing: -6px;
+      }
+
+      .blessing-panel .stage-number {
+        display: none;
+      }
+
+      .blessing-title {
+        font-size: 22px;
+        margin-bottom: 6px;
+        text-align: center;
+      }
+
+      .blessing-title br {
+        display: none;
+      }
+
+      .blessing-sub {
+        display: none;
+      }
+
+      .mini-tags {
+        display: none;
+      }
+
+      .wish-card {
+        padding: 10px 11px;
+        margin-bottom: 9px;
+        border-radius: 16px;
+      }
+
+      .wish-head {
+        font-size: 12px;
+        margin-bottom: 4px;
+      }
+
+      .wish-head-dot {
+        width: 8px;
+        height: 8px;
+      }
+
+      .wish-text {
+        font-size: 10.4px;
+        line-height: 1.36;
+      }
+
+      .wish-text + .wish-text {
+        margin-top: 2px;
+      }
+
+      .photo-btn-row {
+        justify-content: center;
+      }
+
+      .stage-head {
+        margin-bottom: 8px;
+      }
+
+      .stage-head .stage-number {
+        margin-bottom: 8px;
       }
 
       .stage-number {
         font-size: 11px;
-        margin-bottom: 7px;
+        padding: 6px 12px;
       }
 
       .stage-title {
@@ -1083,273 +1336,243 @@
 
       .stage-desc {
         font-size: 12px;
-        margin-bottom: 8px;
-      }
-
-      .stage[data-stage="0"] .stage-title {
-        font-size: 24px;
-      }
-
-      .stage[data-stage="0"] .stage-desc {
-        font-size: 11.5px;
         line-height: 1.45;
-        margin-bottom: 7px;
-      }
-
-      .gallery-grid {
-        width: min(58vh, 330px, 82vw);
-        gap: 6px;
-        margin-bottom: 8px;
-      }
-
-      .photo-card {
-        border-radius: 14px;
-      }
-
-      .center-avatar::after {
-        font-size: 10px;
-        padding: 4px 8px;
-        bottom: 7px;
-      }
-
-      .wish-box {
-        width: 92%;
-        padding: 10px 13px 10px 16px;
-        border-radius: 18px;
-      }
-
-      .wish-box::before {
-        top: 10px;
-        bottom: 10px;
-        width: 4px;
-      }
-
-      .wish-head {
-        font-size: 12.5px;
-        margin-bottom: 3px;
-      }
-
-      .wish-head-dot {
-        width: 8px;
-        height: 8px;
-      }
-
-      .wish-text {
-        font-size: 11.4px;
-        line-height: 1.45;
-      }
-
-      .wish-text + .wish-text {
-        margin-top: 2px;
       }
 
       .main-btn,
       .ghost-btn {
         width: 100%;
-        padding: 12px 16px;
+        padding: 11px 14px;
         font-size: 14px;
       }
 
       .stage-btn-row {
+        width: min(92%, 430px);
         gap: 8px;
-        padding-top: 7px;
-        margin-top: 3px;
+        margin-top: 8px;
       }
 
       .firework-stage-box {
-        min-height: 330px;
-        border-radius: 24px;
+        width: min(92%, 430px);
+        flex: 1;
+        min-height: 0;
+        border-radius: 22px;
       }
 
       .firework-content h3 {
-        font-size: 34px;
+        font-size: 32px;
       }
 
       .firework-content p {
-        font-size: 14px;
-      }
-
-      .cake-scene {
-        min-height: 360px;
-        border-radius: 24px;
-      }
-
-      .delivery-wrapper {
-        width: 340px;
-        height: 340px;
-        bottom: 10px;
-      }
-
-      .cake-lettering {
-        width: 144px;
-        bottom: 64px;
-      }
-
-      .cake-line-main {
-        font-size: 17px;
-        letter-spacing: 1.2px;
-      }
-
-      .cake-line-sub {
-        margin-top: 7px;
-        font-size: 8px;
-        letter-spacing: 0.6px;
-      }
-
-      .flame-one {
-        left: 37.5%;
-        bottom: 148px;
-        width: 14px;
-        height: 22px;
-      }
-
-      .flame-two {
-        left: 45.75%;
-        bottom: 148px;
-        width: 14px;
-        height: 22px;
-      }
-
-      .flame-three {
-        left: 55%;
-        bottom: 148px;
-        width: 14px;
-        height: 22px;
-      }
-
-      .smoke-one {
-        left: 37.5%;
-        bottom: 153px;
-      }
-
-      .smoke-two {
-        left: 45.75%;
-        bottom: 154px;
-      }
-
-      .smoke-three {
-        left: 55%;
-        bottom: 153px;
-      }
-
-      .cake-message-inner {
         font-size: 13px;
-        padding: 13px 14px;
-      }
-
-      .stage-nav {
-        right: 8px;
-        gap: 8px;
-      }
-
-      .dot {
-        width: 9px;
-        height: 9px;
-      }
-
-      .dot.active {
-        height: 26px;
-      }
-
-      .swipe-tip {
-        font-size: 11px;
-        bottom: 6px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .stage-card {
-        width: 95vw;
-        height: calc(var(--app-h) - 22px);
-      }
-
-      .gallery-grid {
-        width: min(54vh, 300px, 81vw);
-        gap: 6px;
-      }
-
-      .stage-title {
-        font-size: 23px;
-      }
-
-      .stage-desc {
-        font-size: 11.5px;
-      }
-
-      .wish-box {
-        width: 92%;
-        padding: 9px 11px 9px 15px;
-      }
-
-      .wish-head {
-        font-size: 12px;
-      }
-
-      .wish-text {
-        font-size: 10.8px;
-        line-height: 1.42;
+        line-height: 1.7;
       }
 
       .cake-scene {
-        min-height: 320px;
+        width: min(92%, 430px);
+        flex: 1;
+        min-height: 0;
+        max-height: 48vh;
+        border-radius: 22px;
       }
 
       .delivery-wrapper {
-        width: 285px;
-        height: 300px;
-        bottom: 8px;
+        width: 275px;
+        height: 285px;
+        bottom: 4px;
       }
 
       .cake-lettering {
-        width: 124px;
-        bottom: 54px;
+        width: 120px;
+        bottom: 51px;
       }
 
       .cake-line-main {
-        font-size: 15px;
+        font-size: 14px;
         letter-spacing: 0.8px;
       }
 
       .cake-line-sub {
         margin-top: 6px;
-        font-size: 7px;
-        letter-spacing: 0.5px;
+        font-size: 6.5px;
+        letter-spacing: 0.45px;
       }
 
       .flame-one {
         left: 37.5%;
-        bottom: 123px;
+        bottom: 118px;
         width: 12px;
-        height: 19px;
+        height: 18px;
       }
 
       .flame-two {
         left: 45.75%;
-        bottom: 123px;
+        bottom: 118px;
         width: 12px;
-        height: 19px;
+        height: 18px;
       }
 
       .flame-three {
         left: 55%;
-        bottom: 123px;
+        bottom: 118px;
         width: 12px;
-        height: 19px;
+        height: 18px;
       }
 
       .smoke-one {
         left: 37.5%;
-        bottom: 128px;
+        bottom: 123px;
       }
 
       .smoke-two {
         left: 45.75%;
-        bottom: 129px;
+        bottom: 124px;
       }
 
       .smoke-three {
         left: 55%;
-        bottom: 128px;
+        bottom: 123px;
+      }
+
+      .cake-message {
+        width: min(92%, 430px);
+      }
+
+      .cake-message.show {
+        max-height: 132px;
+      }
+
+      .cake-message-inner {
+        margin-top: 8px;
+        padding: 11px 13px;
+        border-radius: 18px;
+        font-size: 12.5px;
+        line-height: 1.55;
+      }
+
+      .stage-nav {
+        right: 6px;
+        gap: 7px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+      }
+
+      .dot.active {
+        height: 24px;
+      }
+
+      .swipe-tip {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stage-card {
+        width: 96vw;
+        height: calc(var(--app-h) - 16px);
+      }
+
+      .photo-wall-panel {
+        width: 92%;
+      }
+
+      .gallery-grid {
+        width: min(40vh, 270px, 78vw);
+        gap: 5px;
+      }
+
+      .blessing-panel {
+        width: 92%;
+        padding: 12px;
+      }
+
+      .blessing-title {
+        font-size: 20px;
+      }
+
+      .wish-text {
+        font-size: 10px;
+        line-height: 1.32;
+      }
+
+      .stage-title {
+        font-size: 22px;
+      }
+
+      .stage-desc {
+        font-size: 11px;
+      }
+
+      .cake-scene {
+        max-height: 43vh;
+      }
+
+      .delivery-wrapper {
+        width: 245px;
+        height: 258px;
+      }
+
+      .cake-lettering {
+        width: 108px;
+        bottom: 46px;
+      }
+
+      .cake-line-main {
+        font-size: 13px;
+      }
+
+      .cake-line-sub {
+        margin-top: 5px;
+        font-size: 6px;
+      }
+
+      .flame-one {
+        left: 37.5%;
+        bottom: 106px;
+        width: 10px;
+        height: 16px;
+      }
+
+      .flame-two {
+        left: 45.75%;
+        bottom: 106px;
+        width: 10px;
+        height: 16px;
+      }
+
+      .flame-three {
+        left: 55%;
+        bottom: 106px;
+        width: 10px;
+        height: 16px;
+      }
+
+      .smoke-one {
+        left: 37.5%;
+        bottom: 111px;
+      }
+
+      .smoke-two {
+        left: 45.75%;
+        bottom: 112px;
+      }
+
+      .smoke-three {
+        left: 55%;
+        bottom: 111px;
+      }
+
+      .cake-message.show {
+        max-height: 120px;
+      }
+
+      .cake-message-inner {
+        font-size: 11.6px;
+        line-height: 1.45;
+        padding: 10px 12px;
       }
     }
   </style>
@@ -1387,176 +1610,208 @@
 
   <main class="app" id="app">
     <div class="stage-track" id="stageTrack">
+
       <section class="stage" data-stage="0">
         <div class="stage-card">
-          <div class="stage-number">
-            <span></span>
-            PART 01 · PHOTO WALL
-          </div>
+          <div class="photo-showcase">
 
-          <h2 class="stage-title">
-            九宫格<span class="green">生日照片墙</span>
-          </h2>
+            <div class="blessing-panel">
+              <div class="blessing-inner">
+                <div class="stage-number">
+                  <span></span>
+                  PART 01 · PHOTO WALL
+                </div>
 
-          <p class="stage-desc">
-            中间是今天最特别的主角，周围是卡米尔一起守护这份生日祝福。
-          </p>
+                <h2 class="blessing-title">
+                  九宫格<br>
+                  <span>生日照片墙</span>
+                </h2>
 
-          <div class="gallery-grid">
-            <div class="photo-card">
-              <img src="camil1.jpg" alt="卡米尔图片1">
+                <p class="blessing-sub">
+                  中间是今天最特别的主角，周围是卡米尔一起守护这份生日祝福。
+                </p>
+
+                <div class="mini-tags">
+                  <span class="mini-tag">16TH</span>
+                  <span class="mini-tag red">BIRTHDAY</span>
+                  <span class="mini-tag">CAMIL</span>
+                </div>
+
+                <div class="wish-card">
+                  <div class="wish-head">
+                    <span class="wish-head-dot"></span>
+                    给今天16岁的你
+                  </div>
+
+                  <p class="wish-text">
+                    生日快乐呀！16岁是很特别的一年，是慢慢长大、也继续保持可爱的一年。
+                    愿你一直像你喜欢的<strong>卡米尔</strong>一样，有自己的判断，也有坚定向前的勇气。
+                  </p>
+
+                  <p class="wish-text">
+                    愿你的<strong>聪明</strong>被看见，你的<strong>帅气</strong>被喜欢，
+                    你的每一次<strong>成长</strong>都闪闪发光。
+                  </p>
+                </div>
+
+                <div class="photo-btn-row">
+                  <button class="ghost-btn" data-next>进入烟花环节 ✨</button>
+                </div>
+              </div>
             </div>
 
-            <div class="photo-card">
-              <img src="camil2.jpg" alt="卡米尔图片2">
+            <div class="photo-wall-panel">
+              <div class="wall-title">
+                <h3>Birthday Photo Wall</h3>
+                <span>主角在中间</span>
+              </div>
+
+              <div class="gallery-grid">
+                <div class="photo-card">
+                  <img src="camil1.jpg" alt="卡米尔图片1">
+                </div>
+
+                <div class="photo-card">
+                  <img src="camil2.jpg" alt="卡米尔图片2">
+                </div>
+
+                <div class="photo-card">
+                  <img src="camil3.jpg" alt="卡米尔图片3">
+                </div>
+
+                <div class="photo-card">
+                  <img src="camil4.jpg" alt="卡米尔图片4">
+                </div>
+
+                <div class="photo-card center-avatar">
+                  <img src="girl.jpg" alt="女生头像">
+                </div>
+
+                <div class="photo-card">
+                  <img src="camil5.jpg" alt="卡米尔图片5">
+                </div>
+
+                <div class="photo-card">
+                  <img src="camil6.jpg" alt="卡米尔图片6">
+                </div>
+
+                <div class="photo-card">
+                  <img src="camil7.jpg" alt="卡米尔图片7">
+                </div>
+
+                <div class="photo-card">
+                  <img src="camil8.jpg" alt="卡米尔图片8">
+                </div>
+              </div>
             </div>
 
-            <div class="photo-card">
-              <img src="camil3.jpg" alt="卡米尔图片3">
-            </div>
-
-            <div class="photo-card">
-              <img src="camil4.jpg" alt="卡米尔图片4">
-            </div>
-
-            <div class="photo-card center-avatar">
-              <img src="girl.jpg" alt="女生头像">
-            </div>
-
-            <div class="photo-card">
-              <img src="camil5.jpg" alt="卡米尔图片5">
-            </div>
-
-            <div class="photo-card">
-              <img src="camil6.jpg" alt="卡米尔图片6">
-            </div>
-
-            <div class="photo-card">
-              <img src="camil7.jpg" alt="卡米尔图片7">
-            </div>
-
-            <div class="photo-card">
-              <img src="camil8.jpg" alt="卡米尔图片8">
-            </div>
-          </div>
-
-          <div class="wish-box">
-            <div class="wish-head">
-              <span class="wish-head-dot"></span>
-              给今天16岁的你
-            </div>
-
-            <p class="wish-text">
-              生日快乐呀！16岁是很特别的一年，是慢慢长大、也继续保持可爱的一年。
-              愿你一直像你喜欢的<strong>卡米尔</strong>一样，有自己的判断，也有坚定向前的勇气。
-            </p>
-
-            <p class="wish-text">
-              愿你的<strong>聪明</strong>被看见，你的<strong>帅气</strong>被喜欢，
-              你的每一次<strong>成长</strong>都闪闪发光。新的一岁，继续做很酷、很温柔、也很独一无二的自己吧。
-            </p>
-          </div>
-
-          <div class="stage-btn-row">
-            <button class="ghost-btn" data-next>进入烟花环节 ✨</button>
           </div>
         </div>
       </section>
 
       <section class="stage" data-stage="1">
         <div class="stage-card">
-          <div class="stage-number">
-            <span></span>
-            PART 02 · FIREWORKS
-          </div>
+          <div class="stage-content-center">
+            <div class="stage-head">
+              <div class="stage-number">
+                <span></span>
+                PART 02 · FIREWORKS
+              </div>
 
-          <h2 class="stage-title">
-            点亮<span class="green">生日烟花</span>
-          </h2>
+              <h2 class="stage-title">
+                点亮<span class="green">生日烟花</span>
+              </h2>
 
-          <p class="stage-desc">
-            点击黑色区域，或者点击按钮，放一场属于16岁的生日烟花。
-          </p>
+              <p class="stage-desc">
+                点击黑色区域，或者点击按钮，放一场属于16岁的生日烟花。
+              </p>
+            </div>
 
-          <div class="firework-stage-box" id="fireworkStage">
-            <canvas id="fireworkCanvas"></canvas>
+            <div class="firework-stage-box" id="fireworkStage">
+              <canvas id="fireworkCanvas"></canvas>
 
-            <div class="firework-content">
-              <div class="firework-content-inner">
-                <h3>MAKE A WISH</h3>
-                <p>
-                  愿今天的每一束光，都为你而亮。<br>
-                  点击这里，让烟花出现。
-                </p>
+              <div class="firework-content">
+                <div class="firework-content-inner">
+                  <h3>MAKE A WISH</h3>
+                  <p>
+                    愿今天的每一束光，都为你而亮。<br>
+                    点击这里，让烟花出现。
+                  </p>
 
-                <button class="ghost-btn" id="fireworkBtn">
-                  放一朵烟花 ✨
-                </button>
+                  <button class="ghost-btn" id="fireworkBtn">
+                    放一朵烟花 ✨
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="stage-btn-row">
-            <button class="main-btn" data-prev>返回照片墙</button>
-            <button class="ghost-btn" data-next>进入蛋糕环节 🎂</button>
+            <div class="stage-btn-row">
+              <button class="main-btn" data-prev>返回照片墙</button>
+              <button class="ghost-btn" data-next>进入蛋糕环节 🎂</button>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="stage" data-stage="2">
         <div class="stage-card">
-          <div class="stage-number">
-            <span></span>
-            PART 03 · BIRTHDAY CAKE
-          </div>
-
-          <h2 class="stage-title">
-            卡米尔送来<span class="green">生日蛋糕</span>
-          </h2>
-
-          <p class="stage-desc">
-            请卡米尔从网页里走出来，把生日蛋糕送到你面前。
-          </p>
-
-          <div class="cake-scene">
-            <div class="portal-glow"></div>
-
-            <div class="delivery-wrapper" id="cakeDelivery">
-              <img class="camil-holder-img" src="camil-holder.png" alt="卡米尔托举蛋糕">
-
-              <div class="cake-lettering">
-                <div class="cake-line-main">HAPPY</div>
-                <div class="cake-line-sub">16TH BIRTHDAY</div>
+          <div class="stage-content-center">
+            <div class="stage-head">
+              <div class="stage-number">
+                <span></span>
+                PART 03 · BIRTHDAY CAKE
               </div>
 
-              <div class="candle-flame flame-one"></div>
-              <div class="candle-flame flame-two"></div>
-              <div class="candle-flame flame-three"></div>
+              <h2 class="stage-title">
+                卡米尔送来<span class="green">生日蛋糕</span>
+              </h2>
 
-              <div class="cake-smoke smoke-one"></div>
-              <div class="cake-smoke smoke-two"></div>
-              <div class="cake-smoke smoke-three"></div>
+              <p class="stage-desc">
+                请卡米尔从网页里走出来，把生日蛋糕送到你面前。
+              </p>
             </div>
-          </div>
 
-          <div class="stage-btn-row">
-            <button class="main-btn" id="deliverCakeBtn">
-              请卡米尔走出来 💚
-            </button>
+            <div class="cake-scene">
+              <div class="portal-glow"></div>
 
-            <button class="ghost-btn" id="cakeBtn" disabled>
-              轻轻吹蜡烛 🎂
-            </button>
-          </div>
+              <div class="delivery-wrapper" id="cakeDelivery">
+                <img class="camil-holder-img" src="camil-holder.png" alt="卡米尔托举蛋糕">
 
-          <div class="cake-message" id="cakeMessage">
-            <div class="cake-message-inner">
-              蜡烛已经熄灭啦。愿你的16岁被好运包围，
-              每一天都有<span>绿色的勇气</span>、红色的热烈和闪闪发光的小确幸。
+                <div class="cake-lettering">
+                  <div class="cake-line-main">HAPPY</div>
+                  <div class="cake-line-sub">16TH BIRTHDAY</div>
+                </div>
+
+                <div class="candle-flame flame-one"></div>
+                <div class="candle-flame flame-two"></div>
+                <div class="candle-flame flame-three"></div>
+
+                <div class="cake-smoke smoke-one"></div>
+                <div class="cake-smoke smoke-two"></div>
+                <div class="cake-smoke smoke-three"></div>
+              </div>
+            </div>
+
+            <div class="stage-btn-row">
+              <button class="main-btn" id="deliverCakeBtn">
+                请卡米尔走出来 💚
+              </button>
+
+              <button class="ghost-btn" id="cakeBtn" disabled>
+                轻轻吹蜡烛 🎂
+              </button>
+            </div>
+
+            <div class="cake-message" id="cakeMessage">
+              <div class="cake-message-inner">
+                蜡烛已经熄灭啦。愿你的16岁被好运包围，
+                每一天都有<span>绿色的勇气</span>、红色的热烈和闪闪发光的小确幸。
+              </div>
             </div>
           </div>
         </div>
       </section>
+
     </div>
   </main>
 
@@ -1572,10 +1827,20 @@
 
   <script>
     function setAppHeight() {
-      document.documentElement.style.setProperty("--app-h", `${window.innerHeight}px`);
+      const height = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+      document.documentElement.style.setProperty("--app-h", `${height}px`);
     }
 
     setAppHeight();
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", () => {
+        setAppHeight();
+        applyStageTransform();
+        resizeCanvas();
+      });
+    }
+
     window.addEventListener("resize", () => {
       setAppHeight();
       applyStageTransform();
@@ -1596,7 +1861,7 @@
     let touchEndY = 0;
 
     function getStageHeight() {
-      return window.innerHeight;
+      return window.visualViewport ? window.visualViewport.height : window.innerHeight;
     }
 
     function applyStageTransform() {
@@ -1640,6 +1905,7 @@
       app.classList.add("show");
       document.body.classList.add("entered");
       isEntered = true;
+      setAppHeight();
       goToStage(0);
     });
 
@@ -1721,11 +1987,11 @@
       }, (duration + delay) * 1000);
     }
 
-    for (let i = 0; i < 42; i++) {
+    for (let i = 0; i < 36; i++) {
       createConfetti();
     }
 
-    setInterval(createConfetti, 520);
+    setInterval(createConfetti, 620);
 
     const canvas = document.getElementById("fireworkCanvas");
     const ctx = canvas.getContext("2d");
@@ -1735,7 +2001,7 @@
     let particles = [];
 
     function resizeCanvas() {
-      if (!fireworkStage) return;
+      if (!fireworkStage || !canvas) return;
       const rect = fireworkStage.getBoundingClientRect();
       canvas.width = rect.width;
       canvas.height = rect.height;
