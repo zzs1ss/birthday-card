@@ -15,11 +15,9 @@
     :root {
       --app-h: 100dvh;
       --green: #A6D03B;
-      --green-deep: #719800;
       --red: #E32626;
       --black: #202020;
-      --cream: #fbfff4;
-      --glass: rgba(255, 255, 255, 0.72);
+      --blue: #35AFFF;
     }
 
     html,
@@ -181,7 +179,8 @@
       margin-bottom: 20px;
     }
 
-    .splash-tag span {
+    .splash-tag span,
+    .stage-number span {
       width: 9px;
       height: 9px;
       border-radius: 50%;
@@ -234,7 +233,6 @@
     .enter-btn:hover {
       transform: translateY(-3px);
       background: #111;
-      box-shadow: 0 22px 42px rgba(0, 0, 0, 0.3);
     }
 
     .enter-tip {
@@ -335,14 +333,6 @@
       white-space: nowrap;
     }
 
-    .stage-number span {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 10px rgba(166, 208, 59, 0.9);
-    }
-
     .stage-title {
       text-align: center;
       font-size: clamp(30px, 5vw, 52px);
@@ -388,7 +378,6 @@
       margin-bottom: 8px;
     }
 
-    /* PART 01 */
     .stage[data-stage="0"] .stage-card {
       justify-content: center;
     }
@@ -426,18 +415,6 @@
       font-weight: 950;
       color: rgba(166, 208, 59, 0.1);
       letter-spacing: -12px;
-    }
-
-    .blessing-panel::after {
-      content: "";
-      position: absolute;
-      width: 170px;
-      height: 170px;
-      left: -70px;
-      bottom: -70px;
-      border-radius: 50%;
-      background: rgba(227, 38, 38, 0.18);
-      filter: blur(2px);
     }
 
     .blessing-inner {
@@ -551,32 +528,6 @@
       box-shadow:
         0 22px 56px rgba(0, 0, 0, 0.12),
         inset 0 0 0 1px rgba(255, 255, 255, 0.7);
-    }
-
-    .photo-wall-panel::before {
-      content: "";
-      position: absolute;
-      right: -18px;
-      top: -18px;
-      width: 84px;
-      height: 84px;
-      border-radius: 24px;
-      background: rgba(166, 208, 59, 0.25);
-      transform: rotate(8deg);
-      z-index: -1;
-    }
-
-    .photo-wall-panel::after {
-      content: "";
-      position: absolute;
-      left: -16px;
-      bottom: -16px;
-      width: 90px;
-      height: 90px;
-      border-radius: 24px;
-      background: rgba(227, 38, 38, 0.12);
-      transform: rotate(-10deg);
-      z-index: -1;
     }
 
     .wall-title {
@@ -696,7 +647,6 @@
       background: #b8e350;
     }
 
-    /* PART 02 */
     .firework-stage-box {
       width: min(940px, 94vw);
       flex: 1;
@@ -763,7 +713,6 @@
       flex-shrink: 0;
     }
 
-    /* PART 03 */
     .cake-scene {
       position: relative;
       width: min(920px, 94vw);
@@ -833,25 +782,11 @@
     }
 
     @keyframes walkOutCamilCake {
-      0% {
-        transform: translateX(-50%) translateY(18px) scale(0.94);
-      }
-
-      25% {
-        transform: translateX(-50%) translateY(6px) scale(0.97);
-      }
-
-      50% {
-        transform: translateX(-50%) translateY(14px) scale(0.99);
-      }
-
-      75% {
-        transform: translateX(-50%) translateY(4px) scale(1.02);
-      }
-
-      100% {
-        transform: translateX(-50%) translateY(0) scale(1);
-      }
+      0% { transform: translateX(-50%) translateY(18px) scale(0.94); }
+      25% { transform: translateX(-50%) translateY(6px) scale(0.97); }
+      50% { transform: translateX(-50%) translateY(14px) scale(0.99); }
+      75% { transform: translateX(-50%) translateY(4px) scale(1.02); }
+      100% { transform: translateX(-50%) translateY(0) scale(1); }
     }
 
     .camil-holder-img {
@@ -924,29 +859,13 @@
       opacity: 1;
     }
 
-    .flame-one {
-      left: 37.5%;
-      bottom: 182px;
-    }
-
-    .flame-two {
-      left: 45.75%;
-      bottom: 182px;
-    }
-
-    .flame-three {
-      left: 55%;
-      bottom: 182px;
-    }
+    .flame-one { left: 37.5%; bottom: 182px; }
+    .flame-two { left: 45.75%; bottom: 182px; }
+    .flame-three { left: 55%; bottom: 182px; }
 
     @keyframes flameFlicker {
-      from {
-        transform: translateX(-50%) scale(1) rotate(-4deg);
-      }
-
-      to {
-        transform: translateX(-50%) scale(1.12) rotate(5deg);
-      }
+      from { transform: translateX(-50%) scale(1) rotate(-4deg); }
+      to { transform: translateX(-50%) scale(1.12) rotate(5deg); }
     }
 
     .delivery-wrapper.blown .candle-flame {
@@ -958,7 +877,6 @@
         opacity: 1;
         transform: translateX(-50%) scale(1);
       }
-
       100% {
         opacity: 0;
         transform: translateX(calc(-50% + 18px)) scale(0.15);
@@ -977,43 +895,25 @@
       pointer-events: none;
     }
 
-    .smoke-one {
-      left: 37.5%;
-      bottom: 187px;
-    }
-
-    .smoke-two {
-      left: 45.75%;
-      bottom: 188px;
-    }
-
-    .smoke-three {
-      left: 55%;
-      bottom: 187px;
-    }
+    .smoke-one { left: 37.5%; bottom: 187px; }
+    .smoke-two { left: 45.75%; bottom: 188px; }
+    .smoke-three { left: 55%; bottom: 187px; }
 
     .delivery-wrapper.blown .cake-smoke {
       animation: smokeUp 1.4s ease forwards;
     }
 
-    .delivery-wrapper.blown .smoke-two {
-      animation-delay: 0.12s;
-    }
-
-    .delivery-wrapper.blown .smoke-three {
-      animation-delay: 0.24s;
-    }
+    .delivery-wrapper.blown .smoke-two { animation-delay: 0.12s; }
+    .delivery-wrapper.blown .smoke-three { animation-delay: 0.24s; }
 
     @keyframes smokeUp {
       0% {
         opacity: 0;
         transform: translateY(0) scale(0.5);
       }
-
       30% {
         opacity: 0.9;
       }
-
       100% {
         opacity: 0;
         transform: translateY(-50px) scale(2.4);
@@ -1056,16 +956,565 @@
         transform: scale(0.88);
         opacity: 0;
       }
-
       70% {
         transform: scale(1.03);
         opacity: 1;
       }
-
       100% {
         transform: scale(1);
         opacity: 1;
       }
+    }
+
+    /* PART 04 彩蛋关卡 */
+    .bonus-head .stage-number {
+      background: linear-gradient(135deg, #202020, #2f2f2f);
+      border: 1px solid rgba(166, 208, 59, 0.5);
+    }
+
+    .special-scene {
+      width: min(930px, 94%);
+      flex: 1;
+      min-height: 0;
+      border-radius: 34px;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 0.96fr;
+      gap: 20px;
+      align-items: center;
+      padding: 30px;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(91, 191, 255, 0.36), transparent 24%),
+        radial-gradient(circle at 86% 20%, rgba(255, 238, 141, 0.48), transparent 26%),
+        radial-gradient(circle at 50% 86%, rgba(188, 235, 255, 0.42), transparent 32%),
+        linear-gradient(135deg, #f6fcff 0%, #fff9df 46%, #f7fff3 100%);
+      border: 1px solid rgba(53, 175, 255, 0.28);
+      box-shadow:
+        0 20px 54px rgba(0, 0, 0, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.78);
+    }
+
+    .special-scene::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 2px, transparent 2px),
+        radial-gradient(circle, rgba(166, 208, 59, 0.22) 0 3px, transparent 3px);
+      background-size: 48px 48px, 76px 76px;
+      opacity: 0.65;
+      pointer-events: none;
+      animation: dreamBgMove 12s linear infinite;
+    }
+
+    .special-scene::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 28px;
+      border: 1px dashed rgba(53, 175, 255, 0.35);
+      pointer-events: none;
+    }
+
+    @keyframes dreamBgMove {
+      from {
+        background-position: 0 0, 0 0;
+      }
+
+      to {
+        background-position: 48px 48px, -76px 76px;
+      }
+    }
+
+    .special-left,
+    .special-right {
+      position: relative;
+      z-index: 2;
+    }
+
+    .dream-star {
+      position: absolute;
+      z-index: 1;
+      color: rgba(53, 175, 255, 0.62);
+      font-weight: 900;
+      pointer-events: none;
+      animation: starFloat 3.8s ease-in-out infinite;
+    }
+
+    .star-a {
+      left: 7%;
+      top: 11%;
+      font-size: 26px;
+    }
+
+    .star-b {
+      right: 9%;
+      top: 12%;
+      font-size: 22px;
+      animation-delay: 0.5s;
+    }
+
+    .star-c {
+      left: 45%;
+      bottom: 10%;
+      font-size: 20px;
+      animation-delay: 1s;
+    }
+
+    @keyframes starFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(12deg);
+        opacity: 1;
+      }
+    }
+
+    .dream-cloud {
+      position: absolute;
+      z-index: 1;
+      width: 120px;
+      height: 42px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.62);
+      filter: blur(1px);
+      pointer-events: none;
+    }
+
+    .dream-cloud::before,
+    .dream-cloud::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .dream-cloud::before {
+      width: 52px;
+      height: 52px;
+      left: 18px;
+      top: -22px;
+    }
+
+    .dream-cloud::after {
+      width: 64px;
+      height: 64px;
+      right: 18px;
+      top: -30px;
+    }
+
+    .cloud-a {
+      left: 6%;
+      bottom: 15%;
+      animation: cloudDrift 8s ease-in-out infinite;
+    }
+
+    .cloud-b {
+      right: 7%;
+      bottom: 12%;
+      transform: scale(0.78);
+      animation: cloudDrift 9s ease-in-out infinite reverse;
+    }
+
+    @keyframes cloudDrift {
+      0%, 100% {
+        transform: translateX(0);
+      }
+
+      50% {
+        transform: translateX(16px);
+      }
+    }
+
+    .special-question {
+      border-radius: 30px;
+      padding: 26px;
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(53, 175, 255, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .bonus-label {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      margin-bottom: 14px;
+      border-radius: 999px;
+      background: #202020;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+    }
+
+    .special-question h3 {
+      font-size: clamp(27px, 4vw, 42px);
+      line-height: 1.1;
+      font-weight: 950;
+      margin-bottom: 12px;
+      color: #202020;
+    }
+
+    .special-question h3::after {
+      content: " ✨";
+    }
+
+    .special-question p {
+      color: #555;
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .special-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .special-action-btn {
+      min-height: 72px;
+      border-radius: 24px;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: 950;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .special-action-btn::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+      transform: translateX(-120%) rotate(18deg);
+      transition: transform 0.55s ease;
+    }
+
+    .special-action-btn:hover::before {
+      transform: translateX(120%) rotate(18deg);
+    }
+
+    .choice-emoji {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .pet-btn {
+      background: linear-gradient(135deg, #33b7ff, #5cc9ff);
+      color: white;
+      box-shadow: 0 12px 26px rgba(41, 169, 255, 0.28);
+    }
+
+    .hit-btn {
+      background: linear-gradient(135deg, #ff6a5c, #ff9287);
+      color: white;
+      box-shadow: 0 12px 26px rgba(255, 106, 92, 0.28);
+    }
+
+    .pony-area {
+      position: relative;
+      height: 370px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.9), transparent 34%),
+        radial-gradient(circle at 50% 70%, rgba(53, 175, 255, 0.18), transparent 42%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.24));
+      display: grid;
+      grid-template-columns: 24% 52% 24%;
+      grid-template-rows: 1fr 1fr;
+      align-items: center;
+      justify-items: center;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.62);
+      padding: 18px;
+    }
+
+    .magic-ring {
+      position: absolute;
+      width: 235px;
+      height: 235px;
+      border-radius: 50%;
+      border: 2px solid rgba(53, 175, 255, 0.38);
+      box-shadow:
+        0 0 22px rgba(53, 175, 255, 0.28),
+        inset 0 0 28px rgba(166, 208, 59, 0.16);
+      animation: ringSpin 8s linear infinite;
+      z-index: 1;
+      left: 50%;
+      top: 50%;
+      transform-origin: center;
+    }
+
+    .magic-ring::before,
+    .magic-ring::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 50%;
+      border: 1px dashed rgba(166, 208, 59, 0.48);
+    }
+
+    .magic-ring::after {
+      inset: 38px;
+      border-color: rgba(255, 255, 255, 0.82);
+    }
+
+    @keyframes ringSpin {
+      from {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    .magic-spark {
+      position: absolute;
+      z-index: 5;
+      color: rgba(53, 175, 255, 0.8);
+      font-size: 20px;
+      animation: sparkFloat 2.8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .spark-1 {
+      left: 24%;
+      top: 18%;
+    }
+
+    .spark-2 {
+      right: 22%;
+      top: 28%;
+      animation-delay: 0.6s;
+    }
+
+    .spark-3 {
+      left: 52%;
+      bottom: 16%;
+      animation-delay: 1.1s;
+    }
+
+    @keyframes sparkFloat {
+      0%, 100% {
+        transform: scale(0.86) translateY(0);
+        opacity: 0.55;
+      }
+
+      50% {
+        transform: scale(1.18) translateY(-9px);
+        opacity: 1;
+      }
+    }
+
+    .pony-img {
+      grid-column: 2;
+      grid-row: 1 / 3;
+      position: relative;
+      z-index: 4;
+      max-width: 100%;
+      max-height: 86%;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.2));
+      animation: ponyFloat 2.4s ease-in-out infinite;
+      transform-origin: center bottom;
+    }
+
+    .pony-img.pet {
+      animation: ponyHappy 0.8s ease-in-out 2;
+    }
+
+    .pony-img.hit {
+      animation: ponyShake 0.45s ease-in-out 2;
+    }
+
+    @keyframes ponyFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(2deg);
+      }
+    }
+
+    @keyframes ponyHappy {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-16px) scale(1.05);
+      }
+    }
+
+    @keyframes ponyShake {
+      0%, 100% {
+        transform: translateX(0) rotate(0deg);
+      }
+
+      20% {
+        transform: translateX(-12px) rotate(-6deg);
+      }
+
+      40% {
+        transform: translateX(12px) rotate(6deg);
+      }
+
+      60% {
+        transform: translateX(-8px) rotate(-4deg);
+      }
+
+      80% {
+        transform: translateX(8px) rotate(4deg);
+      }
+    }
+
+    .side-dragon {
+      position: relative;
+      width: 88px;
+      max-width: 96%;
+      max-height: 96%;
+      object-fit: contain;
+      opacity: 0;
+      z-index: 6;
+      pointer-events: none;
+      filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.2));
+    }
+
+    .dragon-1 {
+      grid-column: 1;
+      grid-row: 1;
+      transform: translate(90px, 58px) scale(0.35) rotate(-18deg);
+    }
+
+    .dragon-2 {
+      grid-column: 3;
+      grid-row: 1;
+      transform: translate(-90px, 58px) scale(0.35) rotate(18deg);
+    }
+
+    .dragon-3 {
+      grid-column: 3;
+      grid-row: 2;
+      transform: translate(-90px, -58px) scale(0.35) rotate(14deg);
+    }
+
+    .dragon-1.show {
+      animation: dragonPopLeft 0.64s cubic-bezier(0.18, 0.95, 0.3, 1.18) forwards,
+                 dragonBob 2.4s ease-in-out 0.7s infinite;
+    }
+
+    .dragon-2.show {
+      animation: dragonPopRight 0.64s cubic-bezier(0.18, 0.95, 0.3, 1.18) forwards,
+                 dragonBob 2.4s ease-in-out 0.85s infinite;
+    }
+
+    .dragon-3.show {
+      animation: dragonPopBottomRight 0.64s cubic-bezier(0.18, 0.95, 0.3, 1.18) forwards,
+                 dragonBob 2.4s ease-in-out 1s infinite;
+    }
+
+    @keyframes dragonPopLeft {
+      0% {
+        opacity: 0;
+        transform: translate(90px, 58px) scale(0.35) rotate(-18deg);
+      }
+
+      70% {
+        opacity: 1;
+        transform: translate(-8px, -8px) scale(1.08) rotate(8deg);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+      }
+    }
+
+    @keyframes dragonPopRight {
+      0% {
+        opacity: 0;
+        transform: translate(-90px, 58px) scale(0.35) rotate(18deg);
+      }
+
+      70% {
+        opacity: 1;
+        transform: translate(8px, -8px) scale(1.08) rotate(-8deg);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+      }
+    }
+
+    @keyframes dragonPopBottomRight {
+      0% {
+        opacity: 0;
+        transform: translate(-90px, -58px) scale(0.35) rotate(14deg);
+      }
+
+      70% {
+        opacity: 1;
+        transform: translate(8px, 8px) scale(1.08) rotate(-8deg);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+      }
+    }
+
+    @keyframes dragonBob {
+      0%, 100% {
+        margin-top: 0;
+      }
+
+      50% {
+        margin-top: -8px;
+      }
+    }
+
+    .special-result {
+      margin-top: 14px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s ease;
+    }
+
+    .special-result.show {
+      max-height: 200px;
+    }
+
+    .special-result-inner {
+      border-radius: 22px;
+      padding: 15px 17px;
+      background: rgba(32, 32, 32, 0.9);
+      color: white;
+      border: 2px solid rgba(166, 208, 59, 0.75);
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.7;
+      text-align: center;
+      animation: popIn 0.4s ease;
     }
 
     .stage-nav {
@@ -1122,7 +1571,6 @@
       opacity: 1;
     }
 
-    /* 矮屏电脑 */
     @media (max-height: 760px) and (min-width: 821px) {
       .stage {
         padding: 14px 16px;
@@ -1175,9 +1623,16 @@
         padding: 11px 20px;
         font-size: 14px;
       }
+
+      .special-scene {
+        padding: 20px;
+      }
+
+      .pony-area {
+        height: 300px;
+      }
     }
 
-    /* 手机和平板 */
     @media (max-width: 820px) {
       .splash {
         padding: 16px;
@@ -1279,10 +1734,7 @@
         display: none;
       }
 
-      .blessing-sub {
-        display: none;
-      }
-
+      .blessing-sub,
       .mini-tags {
         display: none;
       }
@@ -1450,6 +1902,163 @@
         line-height: 1.55;
       }
 
+      .special-scene {
+        width: min(92%, 430px);
+        flex: 1;
+        min-height: 0;
+        border-radius: 22px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        gap: 8px;
+        padding: 12px;
+      }
+
+      .special-scene::after {
+        inset: 8px;
+        border-radius: 18px;
+      }
+
+      .dream-cloud {
+        display: none;
+      }
+
+      .special-question {
+        padding: 14px;
+        border-radius: 18px;
+      }
+
+      .bonus-label {
+        display: none;
+      }
+
+      .special-question h3 {
+        font-size: 22px;
+        text-align: center;
+        margin-bottom: 6px;
+      }
+
+      .special-question p {
+        font-size: 12px;
+        line-height: 1.45;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .special-btns {
+        gap: 8px;
+      }
+
+      .special-action-btn {
+        min-height: 58px;
+        font-size: 13px;
+        padding: 10px 8px;
+        border-radius: 18px;
+      }
+
+      .choice-emoji {
+        font-size: 18px;
+      }
+
+      .pony-area {
+        height: 255px;
+        border-radius: 20px;
+        grid-template-columns: 25% 50% 25%;
+        padding: 12px;
+      }
+
+      .magic-ring {
+        width: 170px;
+        height: 170px;
+      }
+
+      .pony-img {
+        max-width: 100%;
+        max-height: 86%;
+      }
+
+      .side-dragon {
+        width: 54px;
+        max-width: 94%;
+      }
+
+      .dragon-1 {
+        transform: translate(70px, 38px) scale(0.35) rotate(-18deg);
+      }
+
+      .dragon-2 {
+        transform: translate(-70px, 38px) scale(0.35) rotate(18deg);
+      }
+
+      .dragon-3 {
+        transform: translate(-70px, -38px) scale(0.35) rotate(14deg);
+      }
+
+      @keyframes dragonPopLeft {
+        0% {
+          opacity: 0;
+          transform: translate(70px, 38px) scale(0.35) rotate(-18deg);
+        }
+
+        70% {
+          opacity: 1;
+          transform: translate(-5px, -5px) scale(1.08) rotate(8deg);
+        }
+
+        100% {
+          opacity: 1;
+          transform: translate(0, 0) scale(1) rotate(0deg);
+        }
+      }
+
+      @keyframes dragonPopRight {
+        0% {
+          opacity: 0;
+          transform: translate(-70px, 38px) scale(0.35) rotate(18deg);
+        }
+
+        70% {
+          opacity: 1;
+          transform: translate(5px, -5px) scale(1.08) rotate(-8deg);
+        }
+
+        100% {
+          opacity: 1;
+          transform: translate(0, 0) scale(1) rotate(0deg);
+        }
+      }
+
+      @keyframes dragonPopBottomRight {
+        0% {
+          opacity: 0;
+          transform: translate(-70px, -38px) scale(0.35) rotate(14deg);
+        }
+
+        70% {
+          opacity: 1;
+          transform: translate(5px, 5px) scale(1.08) rotate(-8deg);
+        }
+
+        100% {
+          opacity: 1;
+          transform: translate(0, 0) scale(1) rotate(0deg);
+        }
+      }
+
+      .special-result {
+        margin-top: 8px;
+      }
+
+      .special-result.show {
+        max-height: 125px;
+      }
+
+      .special-result-inner {
+        font-size: 12px;
+        line-height: 1.45;
+        padding: 10px 12px;
+        border-radius: 16px;
+      }
+
       .stage-nav {
         right: 6px;
         gap: 7px;
@@ -1473,10 +2082,6 @@
       .stage-card {
         width: 96vw;
         height: calc(var(--app-h) - 16px);
-      }
-
-      .photo-wall-panel {
-        width: 92%;
       }
 
       .gallery-grid {
@@ -1574,6 +2179,45 @@
         line-height: 1.45;
         padding: 10px 12px;
       }
+
+      .special-question h3 {
+        font-size: 20px;
+      }
+
+      .special-question p {
+        font-size: 11.2px;
+      }
+
+      .pony-area {
+        height: 220px;
+      }
+
+      .magic-ring {
+        width: 145px;
+        height: 145px;
+      }
+
+      .pony-img {
+        max-width: 100%;
+        max-height: 84%;
+      }
+
+      .special-btns {
+        grid-template-columns: 1fr;
+      }
+
+      .special-action-btn {
+        min-height: 52px;
+        font-size: 12px;
+      }
+
+      .side-dragon {
+        width: 44px;
+      }
+
+      .special-result-inner {
+        font-size: 11.3px;
+      }
     }
   </style>
 </head>
@@ -1594,7 +2238,7 @@
       </h1>
 
       <p>
-        这里藏着三个小小的生日环节：照片、烟花和蛋糕。
+        这里藏着四个小小的生日环节：照片、烟花、蛋糕和一个特殊彩蛋。
         准备好之后，就点开这份只属于你的生日惊喜吧。
       </p>
 
@@ -1667,41 +2311,15 @@
               </div>
 
               <div class="gallery-grid">
-                <div class="photo-card">
-                  <img src="camil1.jpg" alt="卡米尔图片1">
-                </div>
-
-                <div class="photo-card">
-                  <img src="camil2.jpg" alt="卡米尔图片2">
-                </div>
-
-                <div class="photo-card">
-                  <img src="camil3.jpg" alt="卡米尔图片3">
-                </div>
-
-                <div class="photo-card">
-                  <img src="camil4.jpg" alt="卡米尔图片4">
-                </div>
-
-                <div class="photo-card center-avatar">
-                  <img src="girl.jpg" alt="女生头像">
-                </div>
-
-                <div class="photo-card">
-                  <img src="camil5.jpg" alt="卡米尔图片5">
-                </div>
-
-                <div class="photo-card">
-                  <img src="camil6.jpg" alt="卡米尔图片6">
-                </div>
-
-                <div class="photo-card">
-                  <img src="camil7.jpg" alt="卡米尔图片7">
-                </div>
-
-                <div class="photo-card">
-                  <img src="camil8.jpg" alt="卡米尔图片8">
-                </div>
+                <div class="photo-card"><img src="camil1.jpg" alt="卡米尔图片1"></div>
+                <div class="photo-card"><img src="camil2.jpg" alt="卡米尔图片2"></div>
+                <div class="photo-card"><img src="camil3.jpg" alt="卡米尔图片3"></div>
+                <div class="photo-card"><img src="camil4.jpg" alt="卡米尔图片4"></div>
+                <div class="photo-card center-avatar"><img src="girl.jpg" alt="女生头像"></div>
+                <div class="photo-card"><img src="camil5.jpg" alt="卡米尔图片5"></div>
+                <div class="photo-card"><img src="camil6.jpg" alt="卡米尔图片6"></div>
+                <div class="photo-card"><img src="camil7.jpg" alt="卡米尔图片7"></div>
+                <div class="photo-card"><img src="camil8.jpg" alt="卡米尔图片8"></div>
               </div>
             </div>
 
@@ -1812,6 +2430,86 @@
         </div>
       </section>
 
+      <section class="stage" data-stage="3">
+        <div class="stage-card">
+          <div class="stage-content-center">
+            <div class="stage-head bonus-head">
+              <div class="stage-number">
+                <span></span>
+                PART 04 · SECRET BONUS
+              </div>
+
+              <h2 class="stage-title">
+                云宝的<span class="green">隐藏彩蛋关卡</span>
+              </h2>
+
+              <p class="stage-desc">
+                你已经解锁生日隐藏关卡。请选择你要对云宝做什么。
+              </p>
+            </div>
+
+            <div class="special-scene">
+              <div class="dream-star star-a">✦</div>
+              <div class="dream-star star-b">✧</div>
+              <div class="dream-star star-c">★</div>
+              <div class="dream-cloud cloud-a"></div>
+              <div class="dream-cloud cloud-b"></div>
+
+              <div class="special-left">
+                <div class="special-question">
+                  <div class="bonus-label">SECRET LEVEL</div>
+
+                  <h3>
+                    云宝正在等待你的选择
+                  </h3>
+
+                  <p>
+                    不同选择会触发不同神态的云宝，并召唤奶龙从身边弹出来。
+                  </p>
+
+                  <div class="special-btns">
+                    <button class="main-btn special-action-btn pet-btn" id="petPonyBtn">
+                      <span class="choice-emoji">🫳</span>
+                      <span>抚摸云宝的头</span>
+                    </button>
+
+                    <button class="main-btn special-action-btn hit-btn" id="hitPonyBtn">
+                      <span class="choice-emoji">💥</span>
+                      <span>暴打它亿下</span>
+                    </button>
+                  </div>
+
+                  <div class="special-result" id="specialResult">
+                    <div class="special-result-inner" id="specialText">
+                      请选择一个动作，开启云宝隐藏反应。
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="special-right">
+                <div class="pony-area">
+                  <div class="magic-ring"></div>
+                  <div class="magic-spark spark-1">✦</div>
+                  <div class="magic-spark spark-2">✧</div>
+                  <div class="magic-spark spark-3">✦</div>
+
+                  <img src="yunbao-main.png" id="ponyImg" class="pony-img" alt="云宝">
+
+                  <img src="" id="dragon1" class="side-dragon dragon-1" alt="奶龙">
+                  <img src="" id="dragon2" class="side-dragon dragon-2" alt="奶龙">
+                  <img src="" id="dragon3" class="side-dragon dragon-3" alt="奶龙">
+                </div>
+              </div>
+            </div>
+
+            <div class="stage-btn-row">
+              <button class="main-btn" data-prev>返回蛋糕环节</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   </main>
 
@@ -1819,6 +2517,7 @@
     <button class="dot active" data-go="0" aria-label="照片墙"></button>
     <button class="dot" data-go="1" aria-label="烟花"></button>
     <button class="dot" data-go="2" aria-label="蛋糕"></button>
+    <button class="dot" data-go="3" aria-label="特殊环节"></button>
   </div>
 
   <div class="swipe-tip" id="swipeTip">
@@ -1885,6 +2584,10 @@
           resizeCanvas();
           launchFireworkAtRandom();
         }, 450);
+      }
+
+      if (currentStage === 3) {
+        setTimeout(restoreMainPonyIfNeeded, 120);
       }
 
       setTimeout(() => {
@@ -2118,6 +2821,80 @@
         cakeBtn.textContent = "轻轻吹蜡烛 🎂";
       }
     });
+
+    const petPonyBtn = document.getElementById("petPonyBtn");
+    const hitPonyBtn = document.getElementById("hitPonyBtn");
+    const ponyImg = document.getElementById("ponyImg");
+    const dragon1 = document.getElementById("dragon1");
+    const dragon2 = document.getElementById("dragon2");
+    const dragon3 = document.getElementById("dragon3");
+    const specialResult = document.getElementById("specialResult");
+    const specialText = document.getElementById("specialText");
+
+    function clearDragons() {
+      [dragon1, dragon2, dragon3].forEach(dragon => {
+        dragon.classList.remove("show");
+        dragon.removeAttribute("src");
+      });
+    }
+
+    function resetSpecialAnimation() {
+      ponyImg.classList.remove("pet", "hit");
+      clearDragons();
+      void ponyImg.offsetWidth;
+    }
+
+    function showDragons(src1, src2, src3) {
+      dragon1.src = src1;
+      dragon2.src = src2;
+      dragon3.src = src3;
+
+      requestAnimationFrame(() => {
+        setTimeout(() => dragon1.classList.add("show"), 80);
+        setTimeout(() => dragon2.classList.add("show"), 210);
+        setTimeout(() => dragon3.classList.add("show"), 340);
+      });
+    }
+
+    petPonyBtn.addEventListener("click", () => {
+      resetSpecialAnimation();
+
+      ponyImg.src = "yunbao-pet.png";
+      ponyImg.classList.add("pet");
+
+      showDragons(
+        "nailong-pet-1.png",
+        "nailong-pet-2.png",
+        "nailong-pet-3.png"
+      );
+
+      specialResult.classList.add("show");
+      specialText.innerHTML =
+        "云宝被摸头后心情很好：祝你身体健康、永远不死、每天都像彩虹一样闪闪发光！奶龙也一起从旁边弹出来送祝福！👍";
+    });
+
+    hitPonyBtn.addEventListener("click", () => {
+      resetSpecialAnimation();
+
+      ponyImg.src = "yunbao-hit.png";
+      ponyImg.classList.add("hit");
+
+      showDragons(
+        "nailong-hit-1.png",
+        "nailong-hit-2.png",
+        "nailong-hit-3.png"
+      );
+
+      specialResult.classList.add("show");
+      specialText.innerHTML =
+        "云宝被暴打后发出神秘祝福：身体欠康，万事小吉。奶龙虽然气鼓鼓，但还是陪你一起过生日！💢";
+    });
+
+    function restoreMainPonyIfNeeded() {
+      if (!ponyImg.classList.contains("pet") && !ponyImg.classList.contains("hit")) {
+        ponyImg.src = "yunbao-main.png";
+      }
+    }
   </script>
 </body>
 </html>
