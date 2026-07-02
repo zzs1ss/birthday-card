@@ -25,6 +25,8 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
+      overscroll-behavior: none;
+      touch-action: none;
       font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
       color: var(--black);
       background:
@@ -36,6 +38,8 @@
 
     button {
       font-family: inherit;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .confetti-layer {
@@ -251,6 +255,7 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.6s ease;
+      touch-action: none;
     }
 
     .app.show {
@@ -261,7 +266,7 @@
     .stage-track {
       width: 100%;
       height: var(--app-h);
-      transition: transform 0.82s cubic-bezier(0.18, 0.88, 0.2, 1);
+      transition: transform 0.72s cubic-bezier(0.18, 0.86, 0.22, 1);
       will-change: transform;
     }
 
@@ -966,7 +971,6 @@
       }
     }
 
-    /* PART 04 彩蛋关卡 */
     .bonus-head .stage-number {
       background: linear-gradient(135deg, #202020, #2f2f2f);
       border: 1px solid rgba(166, 208, 59, 0.5);
@@ -1018,13 +1022,8 @@
     }
 
     @keyframes dreamBgMove {
-      from {
-        background-position: 0 0, 0 0;
-      }
-
-      to {
-        background-position: 48px 48px, -76px 76px;
-      }
+      from { background-position: 0 0, 0 0; }
+      to { background-position: 48px 48px, -76px 76px; }
     }
 
     .special-left,
@@ -1121,13 +1120,8 @@
     }
 
     @keyframes cloudDrift {
-      0%, 100% {
-        transform: translateX(0);
-      }
-
-      50% {
-        transform: translateX(16px);
-      }
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(16px); }
     }
 
     .special-question {
@@ -1276,13 +1270,8 @@
     }
 
     @keyframes ringSpin {
-      from {
-        transform: translate(-50%, -50%) rotate(0deg);
-      }
-
-      to {
-        transform: translate(-50%, -50%) rotate(360deg);
-      }
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
     }
 
     .magic-spark {
@@ -1346,45 +1335,21 @@
     }
 
     @keyframes ponyFloat {
-      0%, 100% {
-        transform: translateY(0) rotate(-2deg);
-      }
-
-      50% {
-        transform: translateY(-10px) rotate(2deg);
-      }
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
     }
 
     @keyframes ponyHappy {
-      0%, 100% {
-        transform: translateY(0) scale(1);
-      }
-
-      50% {
-        transform: translateY(-16px) scale(1.05);
-      }
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-16px) scale(1.05); }
     }
 
     @keyframes ponyShake {
-      0%, 100% {
-        transform: translateX(0) rotate(0deg);
-      }
-
-      20% {
-        transform: translateX(-12px) rotate(-6deg);
-      }
-
-      40% {
-        transform: translateX(12px) rotate(6deg);
-      }
-
-      60% {
-        transform: translateX(-8px) rotate(-4deg);
-      }
-
-      80% {
-        transform: translateX(8px) rotate(4deg);
-      }
+      0%, 100% { transform: translateX(0) rotate(0deg); }
+      20% { transform: translateX(-12px) rotate(-6deg); }
+      40% { transform: translateX(12px) rotate(6deg); }
+      60% { transform: translateX(-8px) rotate(-4deg); }
+      80% { transform: translateX(8px) rotate(4deg); }
     }
 
     .side-dragon {
@@ -1484,13 +1449,8 @@
     }
 
     @keyframes dragonBob {
-      0%, 100% {
-        margin-top: 0;
-      }
-
-      50% {
-        margin-top: -8px;
-      }
+      0%, 100% { margin-top: 0; }
+      50% { margin-top: -8px; }
     }
 
     .special-result {
@@ -1902,29 +1862,65 @@
         line-height: 1.55;
       }
 
+      .stage[data-stage="3"] {
+        padding: 6px;
+      }
+
+      .stage[data-stage="3"] .stage-card {
+        width: 96vw;
+        height: calc(var(--app-h) - 12px);
+        padding: 9px;
+        border-radius: 22px;
+      }
+
+      .stage[data-stage="3"] .stage-head {
+        margin-bottom: 6px;
+      }
+
+      .stage[data-stage="3"] .stage-number {
+        font-size: 10px;
+        padding: 5px 11px;
+        letter-spacing: 0.7px;
+      }
+
+      .stage[data-stage="3"] .stage-title {
+        font-size: 22px;
+        line-height: 1.08;
+        margin-bottom: 3px;
+      }
+
+      .stage[data-stage="3"] .stage-desc {
+        font-size: 10.5px;
+        line-height: 1.35;
+      }
+
       .special-scene {
-        width: min(92%, 430px);
+        width: min(94%, 430px);
         flex: 1;
         min-height: 0;
-        border-radius: 22px;
+        border-radius: 20px;
         grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr;
-        gap: 8px;
-        padding: 12px;
+        grid-template-rows: auto minmax(0, 1fr);
+        gap: 7px;
+        padding: 9px;
       }
 
       .special-scene::after {
-        inset: 8px;
-        border-radius: 18px;
+        inset: 7px;
+        border-radius: 16px;
       }
 
       .dream-cloud {
         display: none;
       }
 
+      .dream-star {
+        font-size: 16px;
+      }
+
       .special-question {
-        padding: 14px;
-        border-radius: 18px;
+        padding: 10px;
+        border-radius: 16px;
       }
 
       .bonus-label {
@@ -1932,76 +1928,99 @@
       }
 
       .special-question h3 {
-        font-size: 22px;
+        font-size: 18px;
+        line-height: 1.15;
         text-align: center;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
       }
 
       .special-question p {
-        font-size: 12px;
-        line-height: 1.45;
+        font-size: 10.5px;
+        line-height: 1.35;
         text-align: center;
-        margin-bottom: 10px;
+        margin-bottom: 7px;
       }
 
       .special-btns {
-        gap: 8px;
+        grid-template-columns: 1fr 1fr;
+        gap: 7px;
       }
 
       .special-action-btn {
-        min-height: 58px;
-        font-size: 13px;
-        padding: 10px 8px;
-        border-radius: 18px;
+        min-height: 43px;
+        font-size: 11.5px;
+        padding: 6px 6px;
+        border-radius: 15px;
+        gap: 1px;
       }
 
       .choice-emoji {
-        font-size: 18px;
+        font-size: 15px;
+      }
+
+      .special-result {
+        margin-top: 7px;
+      }
+
+      .special-result.show {
+        max-height: 76px;
+      }
+
+      .special-result-inner {
+        font-size: 10.2px;
+        line-height: 1.35;
+        padding: 8px 9px;
+        border-radius: 14px;
       }
 
       .pony-area {
-        height: 255px;
-        border-radius: 20px;
-        grid-template-columns: 25% 50% 25%;
-        padding: 12px;
+        height: 100%;
+        min-height: 150px;
+        border-radius: 18px;
+        grid-template-columns: 23% 54% 23%;
+        padding: 8px;
       }
 
       .magic-ring {
-        width: 170px;
-        height: 170px;
+        width: 145px;
+        height: 145px;
+      }
+
+      .magic-spark {
+        font-size: 14px;
       }
 
       .pony-img {
         max-width: 100%;
-        max-height: 86%;
+        max-height: 88%;
       }
 
       .side-dragon {
-        width: 54px;
-        max-width: 94%;
+        width: 48px;
+        max-width: 92%;
       }
 
       .dragon-1 {
-        transform: translate(70px, 38px) scale(0.35) rotate(-18deg);
+        transform: translate(58px, 34px) scale(0.35) rotate(-18deg);
       }
 
       .dragon-2 {
-        transform: translate(-70px, 38px) scale(0.35) rotate(18deg);
+        transform: translate(-58px, 34px) scale(0.35) rotate(18deg);
       }
 
       .dragon-3 {
-        transform: translate(-70px, -38px) scale(0.35) rotate(14deg);
+        transform: translate(-58px, -34px) scale(0.35) rotate(14deg);
       }
 
       @keyframes dragonPopLeft {
         0% {
           opacity: 0;
-          transform: translate(70px, 38px) scale(0.35) rotate(-18deg);
+          transform: translate(58px, 34px) scale(0.35) rotate(-18deg);
         }
 
         70% {
           opacity: 1;
-          transform: translate(-5px, -5px) scale(1.08) rotate(8deg);
+          transform: translate(-4px, -4px) scale(1.08) rotate(8deg);
         }
 
         100% {
@@ -2013,12 +2032,12 @@
       @keyframes dragonPopRight {
         0% {
           opacity: 0;
-          transform: translate(-70px, 38px) scale(0.35) rotate(18deg);
+          transform: translate(-58px, 34px) scale(0.35) rotate(18deg);
         }
 
         70% {
           opacity: 1;
-          transform: translate(5px, -5px) scale(1.08) rotate(-8deg);
+          transform: translate(4px, -4px) scale(1.08) rotate(-8deg);
         }
 
         100% {
@@ -2030,12 +2049,12 @@
       @keyframes dragonPopBottomRight {
         0% {
           opacity: 0;
-          transform: translate(-70px, -38px) scale(0.35) rotate(14deg);
+          transform: translate(-58px, -34px) scale(0.35) rotate(14deg);
         }
 
         70% {
           opacity: 1;
-          transform: translate(5px, 5px) scale(1.08) rotate(-8deg);
+          transform: translate(4px, 4px) scale(1.08) rotate(-8deg);
         }
 
         100% {
@@ -2044,19 +2063,14 @@
         }
       }
 
-      .special-result {
-        margin-top: 8px;
+      .stage[data-stage="3"] .stage-btn-row {
+        margin-top: 6px;
       }
 
-      .special-result.show {
-        max-height: 125px;
-      }
-
-      .special-result-inner {
-        font-size: 12px;
-        line-height: 1.45;
-        padding: 10px 12px;
-        border-radius: 16px;
+      .stage[data-stage="3"] .stage-btn-row .main-btn {
+        min-height: 42px;
+        padding: 9px 12px;
+        font-size: 13px;
       }
 
       .stage-nav {
@@ -2180,43 +2194,63 @@
         padding: 10px 12px;
       }
 
-      .special-question h3 {
+      .stage[data-stage="3"] .stage-title {
         font-size: 20px;
       }
 
+      .stage[data-stage="3"] .stage-desc {
+        font-size: 10px;
+      }
+
+      .special-question h3 {
+        font-size: 16px;
+      }
+
       .special-question p {
-        font-size: 11.2px;
+        font-size: 10px;
+        margin-bottom: 6px;
+      }
+
+      .special-action-btn {
+        min-height: 40px;
+        font-size: 11px;
+      }
+
+      .choice-emoji {
+        font-size: 14px;
+      }
+
+      .special-result.show {
+        max-height: 70px;
+      }
+
+      .special-result-inner {
+        font-size: 9.8px;
+        line-height: 1.32;
+        padding: 7px 8px;
       }
 
       .pony-area {
-        height: 220px;
+        min-height: 138px;
       }
 
       .magic-ring {
-        width: 145px;
-        height: 145px;
+        width: 128px;
+        height: 128px;
       }
 
       .pony-img {
         max-width: 100%;
-        max-height: 84%;
-      }
-
-      .special-btns {
-        grid-template-columns: 1fr;
-      }
-
-      .special-action-btn {
-        min-height: 52px;
-        font-size: 12px;
+        max-height: 88%;
       }
 
       .side-dragon {
-        width: 44px;
+        width: 42px;
       }
 
-      .special-result-inner {
-        font-size: 11.3px;
+      .stage[data-stage="3"] .stage-btn-row .main-btn {
+        min-height: 39px;
+        font-size: 12px;
       }
     }
   </style>
@@ -2525,26 +2559,25 @@
   </div>
 
   <script>
-    function setAppHeight() {
-      const height = window.visualViewport ? window.visualViewport.height : window.innerHeight;
-      document.documentElement.style.setProperty("--app-h", `${height}px`);
+    let lockedHeight = 0;
+    let resizeTimer = null;
+
+    function getViewportHeight() {
+      return window.visualViewport ? window.visualViewport.height : window.innerHeight;
     }
 
-    setAppHeight();
+    function setAppHeight(force = false) {
+      const nextHeight = getViewportHeight();
 
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener("resize", () => {
-        setAppHeight();
-        applyStageTransform();
-        resizeCanvas();
-      });
+      if (!force && lockedHeight && Math.abs(nextHeight - lockedHeight) < 36) {
+        return;
+      }
+
+      lockedHeight = nextHeight;
+      document.documentElement.style.setProperty("--app-h", `${lockedHeight}px`);
     }
 
-    window.addEventListener("resize", () => {
-      setAppHeight();
-      applyStageTransform();
-      resizeCanvas();
-    });
+    setAppHeight(true);
 
     const splash = document.getElementById("splash");
     const enterBtn = document.getElementById("enterBtn");
@@ -2556,23 +2589,44 @@
     let currentStage = 0;
     let isEntered = false;
     let isSwitching = false;
-    let touchStartY = 0;
-    let touchEndY = 0;
+
+    const swipeState = {
+      active: false,
+      dragging: false,
+      startX: 0,
+      startY: 0,
+      lastX: 0,
+      lastY: 0,
+      startTime: 0,
+      deltaY: 0
+    };
 
     function getStageHeight() {
-      return window.visualViewport ? window.visualViewport.height : window.innerHeight;
+      return lockedHeight || getViewportHeight();
     }
 
-    function applyStageTransform() {
-      stageTrack.style.transform = `translate3d(0, -${currentStage * getStageHeight()}px, 0)`;
+    function setTrackTransition(enabled) {
+      stageTrack.style.transition = enabled
+        ? "transform 0.72s cubic-bezier(0.18, 0.86, 0.22, 1)"
+        : "none";
+    }
+
+    function applyStageTransform(extraY = 0) {
+      const y = -currentStage * getStageHeight() + extraY;
+      stageTrack.style.transform = `translate3d(0, ${y}px, 0)`;
     }
 
     function goToStage(index) {
-      if (index < 0 || index >= stages.length || isSwitching) return;
+      if (index < 0 || index >= stages.length || isSwitching) {
+        setTrackTransition(true);
+        applyStageTransform();
+        return;
+      }
 
       isSwitching = true;
       currentStage = index;
 
+      setTrackTransition(true);
       applyStageTransform();
 
       dots.forEach((dot, i) => {
@@ -2592,7 +2646,7 @@
 
       setTimeout(() => {
         isSwitching = false;
-      }, 850);
+      }, 720);
     }
 
     function nextStage() {
@@ -2603,12 +2657,35 @@
       goToStage(currentStage - 1);
     }
 
+    function handleResize() {
+      clearTimeout(resizeTimer);
+
+      resizeTimer = setTimeout(() => {
+        if (swipeState.active || isSwitching) return;
+
+        setAppHeight(true);
+        setTrackTransition(false);
+        applyStageTransform();
+
+        requestAnimationFrame(() => {
+          setTrackTransition(true);
+          resizeCanvas();
+        });
+      }, 180);
+    }
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", handleResize);
+    }
+
+    window.addEventListener("resize", handleResize);
+
     enterBtn.addEventListener("click", () => {
       splash.classList.add("hide");
       app.classList.add("show");
       document.body.classList.add("entered");
       isEntered = true;
-      setAppHeight();
+      setAppHeight(true);
       goToStage(0);
     });
 
@@ -2632,7 +2709,8 @@
 
       e.preventDefault();
 
-      if (Math.abs(e.deltaY) < 28) return;
+      if (isSwitching) return;
+      if (Math.abs(e.deltaY) < 30) return;
 
       if (e.deltaY > 0) {
         nextStage();
@@ -2641,25 +2719,97 @@
       }
     }, { passive: false });
 
-    window.addEventListener("touchstart", (e) => {
-      if (!isEntered) return;
-      touchStartY = e.touches[0].clientY;
-    }, { passive: true });
+    function touchStartHandler(e) {
+      if (!isEntered || isSwitching) return;
+      if (e.touches.length !== 1) return;
 
-    window.addEventListener("touchend", (e) => {
-      if (!isEntered) return;
+      const touch = e.touches[0];
 
-      touchEndY = e.changedTouches[0].clientY;
-      const diff = touchStartY - touchEndY;
+      swipeState.active = true;
+      swipeState.dragging = false;
+      swipeState.startX = touch.clientX;
+      swipeState.startY = touch.clientY;
+      swipeState.lastX = touch.clientX;
+      swipeState.lastY = touch.clientY;
+      swipeState.startTime = performance.now();
+      swipeState.deltaY = 0;
+    }
 
-      if (Math.abs(diff) < 55) return;
+    function touchMoveHandler(e) {
+      if (!swipeState.active || !isEntered || isSwitching) return;
+      if (e.touches.length !== 1) return;
 
-      if (diff > 0) {
+      const touch = e.touches[0];
+      const dx = touch.clientX - swipeState.startX;
+      const dy = touch.clientY - swipeState.startY;
+      const absX = Math.abs(dx);
+      const absY = Math.abs(dy);
+
+      swipeState.lastX = touch.clientX;
+      swipeState.lastY = touch.clientY;
+      swipeState.deltaY = dy;
+
+      if (!swipeState.dragging) {
+        if (absY > 8 && absY > absX * 1.15) {
+          swipeState.dragging = true;
+          setTrackTransition(false);
+        } else {
+          return;
+        }
+      }
+
+      e.preventDefault();
+
+      let followY = dy * 0.34;
+
+      if ((currentStage === 0 && dy > 0) || (currentStage === stages.length - 1 && dy < 0)) {
+        followY = dy * 0.14;
+      }
+
+      applyStageTransform(followY);
+    }
+
+    function touchEndHandler(e) {
+      if (!swipeState.active || !isEntered) return;
+
+      const wasDragging = swipeState.dragging;
+      const duration = Math.max(performance.now() - swipeState.startTime, 1);
+      const distance = swipeState.startY - swipeState.lastY;
+      const absDistance = Math.abs(distance);
+      const velocity = distance / duration;
+      const threshold = Math.min(78, Math.max(42, getStageHeight() * 0.075));
+
+      swipeState.active = false;
+      swipeState.dragging = false;
+
+      if (!wasDragging) {
+        setTrackTransition(true);
+        applyStageTransform();
+        return;
+      }
+
+      setTrackTransition(true);
+
+      const shouldTurnPage =
+        absDistance > threshold ||
+        Math.abs(velocity) > 0.42;
+
+      if (!shouldTurnPage) {
+        applyStageTransform();
+        return;
+      }
+
+      if (distance > 0) {
         nextStage();
       } else {
         prevStage();
       }
-    }, { passive: true });
+    }
+
+    app.addEventListener("touchstart", touchStartHandler, { passive: true });
+    app.addEventListener("touchmove", touchMoveHandler, { passive: false });
+    app.addEventListener("touchend", touchEndHandler, { passive: true });
+    app.addEventListener("touchcancel", touchEndHandler, { passive: true });
 
     const confettiLayer = document.getElementById("confettiLayer");
     const confettiColors = ["green", "white", "black", "red"];
@@ -2870,7 +3020,7 @@
 
       specialResult.classList.add("show");
       specialText.innerHTML =
-        "云宝被摸头后心情很好：祝你身体健康、永远不死、每天都像彩虹一样闪闪发光！奶龙也一起从旁边弹出来送祝福！👍";
+        "云宝被摸头后心情很好：祝你身体健康、永远不死，每天都像彩虹一样发光！奶龙也来送祝福！👍";
     });
 
     hitPonyBtn.addEventListener("click", () => {
@@ -2887,7 +3037,7 @@
 
       specialResult.classList.add("show");
       specialText.innerHTML =
-        "云宝被暴打后发出神秘祝福：身体欠康，万事小吉。奶龙虽然气鼓鼓，但还是陪你一起过生日！💢";
+        "云宝发出神秘祝福：身体欠康，万事小吉。奶龙虽然气鼓鼓，但还是陪你过生日！💢";
     });
 
     function restoreMainPonyIfNeeded() {
